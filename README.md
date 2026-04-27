@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/bindu_landscape.png" alt="Bindu — humans and agents, side by side" width="100%">
+  <img src="assets/bindu_landscape.png" alt="Bindu - humans and agents, side by side" width="100%">
 </p>
 
 <div align="center">
@@ -15,7 +15,7 @@
 <br>
 
 > **Write your agent in any framework. Wrap it with `bindufy()`.**
-> **Ship a signed A2A microservice — identity, OAuth2, and on-chain payments — in ten lines of code.**
+> **Ship a signed A2A microservice - identity, OAuth2, and on-chain payments - in ten lines of code.**
 
 No infrastructure to write. No framework to rewrite. Works from Python, TypeScript, and Kotlin, and layered on two open protocols: [A2A](https://github.com/a2aproject/A2A) and [x402](https://github.com/coinbase/x402).
 
@@ -59,26 +59,26 @@ When you wrap a handler with `bindufy(config, handler)`, the process comes up sp
 
 <br>
 
-**Protocol — talk to the world**
+**Protocol - talk to the world**
 
 | Capability | What it means |
 |---|---|
 | A2A JSON-RPC endpoint | Standard protocol other agents already speak. `message/send`, `tasks/get`, `message/stream` on port 3773. |
-| Push notifications | Webhook callbacks on task state change — no polling required. |
+| Push notifications | Webhook callbacks on task state change - no polling required. |
 | Language-agnostic | Python, TypeScript, and Kotlin SDKs share one gRPC core. Same protocol, same DID, same auth. |
 
 <br>
 
-**Identity & access — prove who's calling**
+**Identity & access - prove who's calling**
 
 | Capability | What it means |
 |---|---|
-| DID identity (Ed25519) | Every returned artifact is signed. Callers verify with a W3C-standard DID — no shared secrets. |
+| DID identity (Ed25519) | Every returned artifact is signed. Callers verify with a W3C-standard DID - no shared secrets. |
 | OAuth2 via Ory Hydra | Scoped tokens (`agent:read`, `agent:write`, `agent:execute`) instead of one all-or-nothing bearer. |
 
 <br>
 
-**Commerce & reach — get paid and be reachable**
+**Commerce & reach - get paid and be reachable**
 
 | Capability | What it means |
 |---|---|
@@ -107,7 +107,7 @@ Requires Python 3.12+ and [uv](https://github.com/astral-sh/uv). An API key for 
 
 ## Hello agent
 
-The whole idea of Bindu shows up clearly in one file — build any agent you like, hand it to `bindufy()`, and your process comes up as a signed A2A microservice. The block below is complete and runnable.
+The whole idea of Bindu shows up clearly in one file - build any agent you like, hand it to `bindufy()`, and your process comes up as a signed A2A microservice. The block below is complete and runnable.
 
 ```python
 import os
@@ -117,7 +117,7 @@ from agno.models.openai import OpenAIChat
 from agno.tools.duckduckgo import DuckDuckGoTools
 
 # 1. Build your agent with whatever framework you prefer. Bindu doesn't
-#    care what's inside — it just needs something callable.
+#    care what's inside - it just needs something callable.
 agent = Agent(
     instructions="You are a research assistant that finds and summarizes information.",
     model=OpenAIChat(id="gpt-4o"),
@@ -125,7 +125,7 @@ agent = Agent(
 )
 
 # 2. Tell Bindu who you are and where the agent lives. `expose: True`
-#    opens a public FRP tunnel — drop it for local-only.
+#    opens a public FRP tunnel - drop it for local-only.
 config = {
     "author": "you@example.com",
     "name": "research_agent",
@@ -146,11 +146,7 @@ def handler(messages: list[dict[str, str]]):
 bindufy(config, handler)
 ```
 
-Run it, and the agent is live at the configured URL. Need a different port? Export `BINDU_PORT=4000` — no code change.
-
-<p align="center">
-  <img src="assets/agno-simple.png" alt="A bindufied Agno agent running on port 3773" width="780" />
-</p>
+Run it, and the agent is live at the configured URL. Need a different port? Export `BINDU_PORT=4000` - no code change.
 
 <details>
 <summary>TypeScript equivalent</summary>
@@ -213,38 +209,43 @@ Poll `tasks/get` with the same `taskId` until state is `completed`. The returned
 
 So what actually happens when that `bindufy()` call executes? The handler is the only code you write. Everything else is scaffolding Bindu puts around it:
 
-```
-your handler  ──►  bindufy(config, handler)
-                          │
-                          ▼
-                 ┌────────────────────────────────────┐
-                 │  Bindu core (HTTP :3773)           │
-                 │    OAuth2 (Hydra)                  │
-                 │    DID verification                │
-                 │    x402 payment check (optional)   │
-                 │    Task manager + scheduler        │
-                 └────────────────────────────────────┘
-                          │
-                          ▼
-                 A2A-signed artifact returned to caller
+```mermaid
+flowchart TD
+    A[your handler] --> B["bindufy(config, handler)"]
+
+    B --> C[Bindu Core :3773]
+
+    subgraph D[Bindu Core Internals]
+        D1["OAuth2 (Hydra)"]
+        D2[DID Verification]
+        D3["x402 Payment (Optional)"]
+        D4[Task Manager & Scheduler]
+    end
+
+    C --> D1
+    C --> D2
+    C --> D3
+    C --> D4
+
+    D4 --> E[A2A Signed Response]
 ```
 
-`bindufy()` is a thin wrapper. Your handler stays pure — `(messages) -> response`. Bindu owns identity, protocol, auth, payment, storage, and scheduling.
+`bindufy()` is a thin wrapper. Your handler stays pure - `(messages) -> response`. Bindu owns identity, protocol, auth, payment, storage, and scheduling.
 
 ---
 
 ## Calling a secured agent
 
-> **TL;DR** — when `AUTH__ENABLED=true`, every call needs a Hydra bearer token *and* three `X-DID-*` headers. Python client: ~25 lines, [below](#step-2--pick-your-client). Postman: paste one script. The rest of this section unpacks why and how, and what goes wrong when it goes wrong.
+> **TL;DR** - when `AUTH__ENABLED=true`, every call needs a Hydra bearer token and three `X-DID-*` headers. Python client: ~25 lines, [below](#step-2--pick-your-client). Postman: paste one script. The rest of this section unpacks why and how, and what goes wrong when it goes wrong.
 
-The `curl` example in *Hello agent* works because auth is off by default — anyone can POST to your agent. The moment you flip `AUTH__ENABLED=true AUTH__PROVIDER=hydra`, your agent gets stricter. Every caller now has to answer two questions before the handler runs:
+The `curl` example in *Hello agent* works because auth is off by default - anyone can POST to your agent. The moment you flip `AUTH__ENABLED=true AUTH__PROVIDER=hydra`, your agent gets stricter. Every caller now has to answer two questions before the handler runs:
 
-1. **Are you allowed to call me?** — show a valid OAuth2 token from Hydra.
-2. **Are you really who you say you are?** — sign the request with a DID key.
+1. **Are you allowed to call me?** - show a valid OAuth2 token from Hydra.
+2. **Are you really who you say you are?** - sign the request with a DID key.
 
 Think of it like boarding a flight: the boarding pass (OAuth token) says "yes, you have a seat on this flight," and the passport (DID signature) says "and you really are the person on that boarding pass." The server checks both.
 
-The full theory lives in [`docs/AUTHENTICATION.md`](docs/AUTHENTICATION.md) and [`docs/DID.md`](docs/DID.md) — plain-English, no crypto background assumed. What follows is the practical "I just want to call my agent" version.
+The full theory lives in [`docs/AUTHENTICATION.md`](docs/AUTHENTICATION.md) and [`docs/DID.md`](docs/DID.md) - plain-English, no crypto background assumed. What follows is the practical "I just want to call my agent" version.
 
 <br>
 
@@ -267,11 +268,11 @@ json.dumps({"body": <raw-body-string>, "did": <did>, "timestamp": <ts>}, sort_ke
 Two gotchas that will bite you until you've felt them:
 
 - **Match Python's JSON spacing.** Python's default `json.dumps` writes `", "` and `": "` (with spaces). `JSON.stringify` in JS writes them without. If your payload serializes differently, Ed25519 sees different bytes and the server returns `reason="crypto_mismatch"`.
-- **Sign what you send.** If you parse the body, modify it, re-serialize, and ship that — you signed the wrong bytes. Build the body string **once**, sign those exact bytes, send those exact bytes.
+- **Sign what you send.** If you parse the body, modify it, re-serialize, and ship that - you signed the wrong bytes. Build the body string **once**, sign those exact bytes, send those exact bytes.
 
 <br>
 
-### Step 1 — get a bearer token from Hydra
+### Step 1 - get a bearer token from Hydra
 
 The agent prints a ready-to-run curl in its startup banner. The short version:
 
@@ -285,13 +286,13 @@ curl -X POST https://hydra.getbindu.com/oauth2/token \
   -d "scope=openid offline agent:read agent:write"
 ```
 
-The response has an `access_token`. It's good for about an hour — cache it, refetch when you need it.
+The response has an `access_token`. It's good for an hour - cache it, refetch when you need it.
 
 <br>
 
-### Step 2 — pick your client
+### Step 2 - pick your client
 
-**Python — the shortest working example.** Reads the agent's own keys (Bindu writes them to `.bindu/` on first boot), signs a request, polls for the result. Self-call works because the agent's keys *are* a valid caller identity.
+**Python - the shortest working example.** Reads the agent's own keys (Bindu writes them to `.bindu/` on first boot), signs a request, polls for the result. Self-call works because the agent's keys are a valid caller identity.
 
 ```python
 import base58, httpx, json, time, uuid
@@ -310,7 +311,7 @@ bearer = httpx.post("https://hydra.getbindu.com/oauth2/token", data={
     "scope": "openid offline agent:read agent:write",
 }).json()["access_token"]
 
-# 3. Build the body ONCE — these are the bytes we'll sign AND send
+# 3. Build the body ONCE - these are the bytes we'll sign AND send
 tid = str(uuid.uuid4())
 body = json.dumps({
     "jsonrpc": "2.0", "method": "message/send", "id": str(uuid.uuid4()),
@@ -337,11 +338,11 @@ r = httpx.post("http://localhost:3773/", content=body, headers={
 print(r.status_code, r.json())
 ```
 
-For a full-featured version with polling and error handling, see [`examples/hermes_agent/call.py`](examples/hermes_agent/call.py).
+For a full-featured version with polling and error handling, see  - [`examples/hermes_agent/call.py`](examples/hermes_agent/call.py).
 
 <br>
 
-**Postman — paste one script into your collection.**
+**Postman - paste one script into your collection.**
 
 1. Open your collection → **Pre-request Script** tab → paste the contents of [`docs/postman-did-signing.js`](docs/postman-did-signing.js).
 2. Set two collection variables: `bindu_did` (your DID string) and `bindu_did_seed` (your 32-byte Ed25519 seed, base64-encoded).
@@ -352,7 +353,7 @@ Requires Postman Desktop v11+ (needs Ed25519 in `crypto.subtle`).
 
 <br>
 
-**Plain curl — technically possible, usually painful.** The signature depends on the body bytes you're about to send, so you need a helper script to compute the signature first, then substitute it into the curl call. If you're doing this, you're probably better off using the Python client above.
+**Plain curl - technically possible, usually painful.** The signature depends on the body bytes you're about to send, so you need a helper script to compute the signature first, then substitute it into the curl call. If you're doing this, you're probably better off using the Python client above.
 
 <br>
 
@@ -366,21 +367,21 @@ The server logs one of three reasons. If your request gets rejected with a 403, 
 | `malformed_input` | The base58 decoding of the signature or public key failed | Check the `X-DID-Signature` isn't URL-encoded, truncated, or wrapped in quotes |
 | `crypto_mismatch` | The bytes you signed ≠ the bytes you sent | Rebuild the payload with `sort_keys=True` and Python's default JSON spacing; sign the raw body string once and send the same bytes |
 
-One sharper failure mode we hit in testing: if `crypto_mismatch` persists and you're *sure* your bytes match, Hydra's stored public key for this DID may be stale from an older registration. Fix: stop the agent, delete `.bindu/oauth_credentials.json`, restart — Hydra's client record will be refreshed with the current keys.
+One sharper failure mode we hit in testing: if `crypto_mismatch` persists and you're *sure* your bytes match, Hydra's stored public key for this DID may be stale from an older registration. Fix: stop the agent, delete `.bindu/oauth_credentials.json`, restart - Hydra's client record will be refreshed with the current keys.
 
 ---
 
-## Gateway — multi-agent orchestration
+## Gateway - multi-agent orchestration
 
-A single `bindufy()`-wrapped agent is a microservice. The **Bindu Gateway** is a task-first orchestrator that sits on top: give it a user question and a catalog of A2A agents, and a planner LLM decomposes the work, calls the right agents over A2A, and streams results back as Server-Sent Events. No DAG engine, no separate orchestrator service — the planner's LLM picks tools per turn.
+A single `bindufy()` wrapped agent is a microservice. The **Bindu Gateway** is a task-first orchestrator that sits on top: give it a user question and a catalog of A2A agents, and a planner LLM decomposes the work, calls the right agents over A2A, and streams results back as Server-Sent Events. No DAG engine, no separate orchestrator service - the planner's LLM picks tools per turn.
 
 What you get beyond a single agent:
 
-- **One endpoint: `POST /plan`** — hand it a question and an agent catalog, get streamed steps.
-- **Agent catalog per request** — external systems pass the list of agents, skills, and endpoints. No fleet hosting in the gateway itself.
-- **Session persistence (Supabase)** — Postgres-backed with compaction, revert, and multi-turn history.
-- **Native TypeScript A2A** — no Python subprocess, no `@bindu/sdk` dependency in the gateway.
-- **Optional DID signing + Hydra integration** — gateway identity end-to-end.
+- **One endpoint: `POST /plan`** - hand it a question and an agent catalog, get streamed steps.
+- **Agent catalog per request** - external systems pass the list of agents, skills, and endpoints. No fleet hosting in the gateway itself.
+- **Session persistence (Supabase)** - Postgres-backed with compaction, revert, and multi-turn history.
+- **Native TypeScript A2A** - no Python subprocess, no `@bindu/sdk` dependency in the gateway.
+- **Optional DID signing + Hydra integration** - gateway identity end-to-end.
 
 Minimal quickstart:
 
@@ -406,7 +407,7 @@ Gateway documentation:
 | Production deployment | [docs.getbindu.com/bindu/gateway/production](https://docs.getbindu.com/bindu/gateway/production) |
 | API reference | [docs.getbindu.com/api/introduction](https://docs.getbindu.com/api/introduction) |
 
-For a runnable multi-agent demo, see [`examples/gateway_test_fleet/`](examples/gateway_test_fleet/) — five small agents on local ports, one gateway, one query.
+For a runnable multi-agent demo, see [`examples/gateway_test_fleet/`](examples/gateway_test_fleet/) - five small agents on local ports, one gateway, one query.
 
 ---
 
@@ -421,7 +422,7 @@ Bring whichever agent framework you already like. You hand Bindu a handler; it g
 | **Python** | [AG2](https://github.com/ag2ai/ag2) · [Agno](https://github.com/agno-agi/agno) · [CrewAI](https://github.com/joaomdmoura/crewAI) · [Hermes Agent](https://github.com/NousResearch/hermes-agent) · [LangChain](https://github.com/langchain-ai/langchain) · [LangGraph](https://github.com/langchain-ai/langgraph) · [Notte](https://github.com/nottelabs/notte) |
 | **TypeScript** | [OpenAI SDK](https://github.com/openai/openai-node) · [LangChain.js](https://github.com/langchain-ai/langchainjs) |
 | **Kotlin** | [OpenAI Kotlin SDK](https://github.com/aallam/openai-kotlin) |
-| **Any other language** | via the [gRPC core](docs/grpc/) — add an SDK in a few hundred lines |
+| **Any other language** | via the [gRPC core](docs/grpc/) - add an SDK in a few hundred lines |
 
 Compatible with any LLM provider that speaks the OpenAI or Anthropic API: [OpenRouter](https://openrouter.ai/) (100+ models), [OpenAI](https://platform.openai.com/), [MiniMax](https://platform.minimaxi.com), and others.
 
@@ -433,13 +434,13 @@ Five that cover the spectrum of what Bindu can do. All 20+ runnable examples liv
 
 | Example | What it shows |
 |---|---|
-| [Agent Swarm](examples/agent_swarm/) | Multi-agent collaboration — a small "society" of Agno agents delegating work to each other. |
-| [Premium Advisor](examples/premium-advisor/) | **x402 payments** — caller has to pay USDC on Base before the handler runs. |
-| [Hermes via Bindu](examples/hermes_agent/) | **Third-party framework interop** — Nous Research's Hermes agent bindufied in ~90 lines. |
-| [Gateway Test Fleet](examples/gateway_test_fleet/) | Five small agents + one gateway — the multi-agent orchestration story end-to-end. |
-| [TypeScript OpenAI Agent](examples/typescript-openai-agent/) | **Polyglot proof** — a TS agent bindufied with the Bindu TS SDK; no Python to write. |
+| [Agent Swarm](examples/agent_swarm/) | Multi-agent collaboration - a small "society" of Agno agents delegating work to each other. |
+| [Premium Advisor](examples/premium-advisor/) | **x402 payments** - caller has to pay USDC on Base before the handler runs. |
+| [Hermes via Bindu](examples/hermes_agent/) | **Third-party framework interop** - Nous Research's Hermes agent bindufied in ~90 lines. |
+| [Gateway Test Fleet](examples/gateway_test_fleet/) | Five small agents + one gateway - the multi-agent orchestration story end-to-end. |
+| [TypeScript OpenAI Agent](examples/typescript-openai-agent/) | **Polyglot proof** - a TS agent bindufied with the Bindu TS SDK; no Python to write. |
 
-**See the full catalog:** [`examples/`](examples/) — 20+ agents covering CSV analysis, PDF Q&A, speech-to-text, web scraping, cybersecurity newsletters, multi-lingual collab, blog writing, and more.
+**See the full catalog:** [`examples/`](examples/) - 20+ agents covering CSV analysis, PDF Q&A, speech-to-text, web scraping, cybersecurity newsletters, multi-lingual collab, blog writing, and more.
 
 Missing a framework you use? Open an issue or ask on [Discord](https://discord.gg/3w5zuYUuwt).
 
@@ -463,7 +464,7 @@ A built-in chat UI is available at `http://localhost:5173` after running `cd fro
 
 ## Core features
 
-Everything below is optional and modular — the minimal install is just the A2A server. Each row links to a dedicated guide in [`docs/`](docs/).
+Everything below is optional and modular - the minimal install is just the A2A server. Each row links to a dedicated guide in [`docs/`](docs/).
 
 <br>
 
@@ -515,30 +516,10 @@ Bindu targets 70% test coverage (goal: 80%+):
 ```bash
 uv run pytest tests/unit/ -v                                    # fast unit tests
 uv run pytest tests/integration/grpc/ -v -m e2e                 # gRPC E2E
-uv run pytest -n auto --cov=bindu --cov-report=term-missing    # full suite
+uv run pytest -n auto --cov=bindu --cov-report=term-missing     # full suite
 ```
 
 CI runs unit tests, gRPC E2E, and TypeScript SDK build on every PR. See [`.github/workflows/ci.yml`](.github/workflows/ci.yml).
-
----
-
-## Known issues
-
-If you're running Bindu in production, read [`bugs/known-issues.md`](bugs/known-issues.md) first. It's a per-subsystem catalog with workarounds. Postmortems for fixed bugs live under [`bugs/core/`](bugs/core/), [`bugs/gateway/`](bugs/gateway/), [`bugs/sdk/`](bugs/sdk/), and [`bugs/frontend/`](bugs/frontend/).
-
-Current high-severity items:
-
-| Subsystem | Slug | Symptom |
-|---|---|---|
-| Core | [`x402-middleware-fails-open-on-body-parse`](bugs/known-issues.md#x402-middleware-fails-open-on-body-parse) | Malformed JSON body bypasses payment check |
-| Core | [`x402-no-replay-prevention`](bugs/known-issues.md#x402-no-replay-prevention) | One payment buys unlimited work until `validBefore` |
-| Core | [`x402-no-signature-verification`](bugs/known-issues.md#x402-no-signature-verification) | EIP-3009 signature is never verified |
-| Core | [`x402-balance-check-skipped-on-missing-contract-code`](bugs/known-issues.md#x402-balance-check-skipped-on-missing-contract-code) | Misconfigured RPC silently skips balance check |
-| Gateway | [`context-window-hardcoded`](bugs/known-issues.md#context-window-hardcoded) | Compaction threshold assumes a 200k-token window |
-| Gateway | [`poll-budget-unbounded-wall-clock`](bugs/known-issues.md#poll-budget-unbounded-wall-clock) | `sendAndPoll` can stall 5 minutes per tool call |
-| Gateway | [`no-session-concurrency-guard`](bugs/known-issues.md#no-session-concurrency-guard) | Two `/plan` calls on the same session tangle histories |
-
-Found a new issue? Open a GitHub Issue referencing the slug (e.g. *"Fixes `context-window-hardcoded`"*). Fixed one? Remove its entry from `known-issues.md` and add a dated postmortem — see [`bugs/README.md`](bugs/README.md) for the template.
 
 ---
 
@@ -569,6 +550,26 @@ On Windows PowerShell you may need `Set-ExecutionPolicy RemoteSigned -Scope Curr
 
 ---
 
+## Known issues
+
+If you're running Bindu in production, read [`bugs/known-issues.md`](bugs/known-issues.md) first. It's a per-subsystem catalog with workarounds. Postmortems for fixed bugs live under [`bugs/core/`](bugs/core/), [`bugs/gateway/`](bugs/gateway/), [`bugs/sdk/`](bugs/sdk/), and [`bugs/frontend/`](bugs/frontend/).
+
+Current high-severity items:
+
+| Subsystem | Slug | Symptom |
+|---|---|---|
+| Core | [`x402-middleware-fails-open-on-body-parse`](bugs/known-issues.md#x402-middleware-fails-open-on-body-parse) | Malformed JSON body bypasses payment check |
+| Core | [`x402-no-replay-prevention`](bugs/known-issues.md#x402-no-replay-prevention) | One payment buys unlimited work until `validBefore` |
+| Core | [`x402-no-signature-verification`](bugs/known-issues.md#x402-no-signature-verification) | EIP-3009 signature is never verified |
+| Core | [`x402-balance-check-skipped-on-missing-contract-code`](bugs/known-issues.md#x402-balance-check-skipped-on-missing-contract-code) | Misconfigured RPC silently skips balance check |
+| Gateway | [`context-window-hardcoded`](bugs/known-issues.md#context-window-hardcoded) | Compaction threshold assumes a 200k-token window |
+| Gateway | [`poll-budget-unbounded-wall-clock`](bugs/known-issues.md#poll-budget-unbounded-wall-clock) | `sendAndPoll` can stall 5 minutes per tool call |
+| Gateway | [`no-session-concurrency-guard`](bugs/known-issues.md#no-session-concurrency-guard) | Two `/plan` calls on the same session tangle histories |
+
+Found a new issue? Open a GitHub Issue referencing the slug (e.g. *"Fixes `context-window-hardcoded`"*). Fixed one? Remove its entry from `known-issues.md` and add a dated postmortem - see [`bugs/README.md`](bugs/README.md) for the template.
+
+---
+
 ## Contributing
 
 Clone, set up, and run the pre-commit hooks:
@@ -581,7 +582,7 @@ uv sync --dev
 pre-commit run --all-files
 ```
 
-Discussion and help happen on [Discord](https://discord.gg/3w5zuYUuwt). See [`.github/contributing.md`](.github/contributing.md) for the full guide. There's an open list of agents we'd like to see bindufied — [contribute one](https://www.notion.so/getbindu/305d3bb65095808eac2bf720368e9804?v=305d3bb6509580189941000cfad83ae7&source=copy_link).
+Discussion and help happen on [Discord](https://discord.gg/3w5zuYUuwt). See [`.github/contributing.md`](.github/contributing.md) for the full guide. There's an open list of agents we'd like to see bindufied - [contribute one](https://www.notion.so/getbindu/305d3bb65095808eac2bf720368e9804?v=305d3bb6509580189941000cfad83ae7&source=copy_link).
 
 ---
 
@@ -613,6 +614,28 @@ Apache 2.0. See [LICENSE.md](LICENSE.md).
   <a href="https://api.star-history.com/svg?repos=getbindu/Bindu&type=Date">
     <img src="https://api.star-history.com/svg?repos=getbindu/Bindu&type=Date" alt="Star history">
   </a>
+</p>
+
+<br/>
+<br/>
+
+<p align="center">
+  <img src="./assets/sunflower-mountains.jpeg" alt="Bindu" width="720" />
+</p>
+
+<p align="center">
+  <em>"We believe in the sunflower theory - standing tall together, bringing hope and light to the Internet of Agents."</em>
+</p>
+
+<p align="center">
+  <em>From idea to the Internet of Agents in 2 minutes.</em>
+  <em>Your agent. Your framework. Universal protocols.</em>
+</p>
+
+<p align="center">
+  <a href="https://github.com/getbindu/Bindu">Star us on GitHub</a> •
+  <a href="https://discord.gg/3w5zuYUuwt">Join Discord</a> •
+  <a href="https://docs.getbindu.com">Read the documentation</a>
 </p>
 
 <p align="center">

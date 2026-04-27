@@ -1,743 +1,646 @@
-<div align="center" id="top">
-  <a href="https://getbindu.com">
-    <picture>
-      <img src="../assets/bindu.png" alt="Bindu" width="300">
-    </picture>
-  </a>
-</div>
-
 <p align="center">
-  <em>Die Identitäts-, Kommunikations- und Zahlungs-Schicht für KI-Agenten</em>
+  <img src="../assets/bindu_landscape.png" alt="Bindu - Menschen und Agenten, Seite an Seite" width="100%">
 </p>
-
-<p align="center">
-  <a href="../README.md">🇬🇧 Englisch</a> •
-  <a href="README.de.md">🇩🇪 Deutsch</a> •
-  <a href="README.es.md">🇪🇸 Spanisch</a> •
-  <a href="README.fr.md">🇫🇷 Französisch</a> •
-  <a href="README.hi.md">🇮🇳 Hindi</a> •
-  <a href="README.bn.md">🇮🇳 Bengali</a> •
-  <a href="README.zh.md">🇨🇳 Chinesisch</a> •
-  <a href="README.nl.md">🇳🇱 Niederländisch</a> •
-  <a href="README.ta.md">🇮🇳 Tamil</a>
-</p>
-
-<p align="center">
-  <a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" alt="License"></a>
-  <a href="https://hits.sh/github.com/Saptha-me/Bindu.svg"><img src="https://hits.sh/github.com/Saptha-me/Bindu.svg" alt="Hits"></a>
-  <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.12+-blue.svg" alt="Python Version"></a>
-  <a href="https://pypi.org/project/bindu/"><img src="https://img.shields.io/pypi/v/bindu.svg" alt="PyPI version"></a>
-  <a href="https://coveralls.io/github/Saptha-me/Bindu?branch=v0.3.18"><img src="https://coveralls.io/repos/github/Saptha-me/Bindu/badge.svg?branch=v0.3.18" alt="Coverage"></a>
-  <a href="https://github.com/getbindu/Bindu/actions/workflows/release.yml"><img src="https://github.com/getbindu/Bindu/actions/workflows/release.yml/badge.svg" alt="Tests"></a>
-  <a href="https://discord.gg/3w5zuYUuwt"><img src="https://img.shields.io/badge/Join%20Discord-7289DA?logo=discord&logoColor=white" alt="Discord"></a>
-  <a href="https://github.com/getbindu/Bindu/graphs/contributors"><img src="https://img.shields.io/github/contributors/getbindu/Bindu" alt="Contributors"></a>
-</p>
-
-<br/>
-
-<p align="center">
-  <img src="../assets/sunflower-mountains.jpeg" alt="Bindu — The Internet of Agents" width="720" />
-</p>
-
-<p align="center">
-  <em>"Wie Sonnenblumen, die sich dem Licht zuwenden, arbeiten Agenten in Schwärmen zusammen - jeder unabhängig, doch gemeinsam schaffen sie etwas Größeres."</em>
-</p>
-
-<br/>
 
 <div align="center">
-  <h3>Onboarden Sie Ihren Agenten in einer Zeile</h3>
+
+<img alt="Bindu" src="../assets/bindu_logo.png" width="80">
+
+# Bindu
+
+### Identitäts-, Kommunikations- und Zahlungsebene für KI-Agenten.
+
 </div>
 
+<br>
+
+> **Schreiben Sie Ihren Agenten in jedem Framework. Wickeln Sie ihn mit `bindufy()` ein.**
+> **Senden Sie einen signierten A2A-Mikroservice in zehn Zeilen Code - mit Identität, OAuth2 und On-Chain-Zahlungen.**
+
+Keine Infrastruktur schreiben. Kein Framework umschreiben. Funktioniert mit Python, TypeScript und Kotlin und basiert auf zwei offenen Protokollen: [A2A](https://github.com/a2aproject/A2A) und [x402](https://github.com/coinbase/x402).
+
 <div align="center">
-  <pre><code>curl -fsSL https://getbindu.com/install-bindu.sh | bash</code></pre>
+
+  <p>
+    <a href="../README.md">English</a> ·
+    <a href="README.de.md">Deutsch</a> ·
+    <a href="README.es.md">Español</a> ·
+    <a href="README.fr.md">Français</a> ·
+    <a href="README.hi.md">हिंदी</a> ·
+    <a href="README.bn.md">বাংলা</a> ·
+    <a href="README.zh.md">中文</a> ·
+    <a href="README.nl.md">Nederlands</a> ·
+    <a href="README.ta.md">தமிழ்</a>
+  </p>
+
+  <p>
+    <a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" alt="License"></a>
+    <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.12+-blue.svg" alt="Python Version"></a>
+    <a href="https://pypi.org/project/bindu/"><img src="https://img.shields.io/pypi/v/bindu.svg" alt="PyPI version"></a>
+    <a href="https://coveralls.io/github/Saptha-me/Bindu?branch=v0.3.18"><img src="https://coveralls.io/repos/github/Saptha-me/Bindu/badge.svg?branch=v0.3.18" alt="Coverage"></a>
+    <a href="https://github.com/getbindu/Bindu/actions/workflows/release.yml"><img src="https://github.com/getbindu/Bindu/actions/workflows/release.yml/badge.svg" alt="Tests"></a>
+    <a href="https://discord.gg/3w5zuYUuwt"><img src="https://img.shields.io/badge/Discord-7289DA?logo=discord&logoColor=white" alt="Discord"></a>
+    <a href="https://github.com/getbindu/Bindu/graphs/contributors"><img src="https://img.shields.io/github/contributors/getbindu/Bindu" alt="Contributors"></a>
+    <a href="https://hits.sh/github.com/Saptha-me/Bindu.svg"><img src="https://hits.sh/github.com/Saptha-me/Bindu.svg" alt="Hits"></a>
+  </p>
+
+  <p>
+    <a href="https://getbindu.com"><strong>Registrieren Sie Ihren Agenten</strong></a> ·
+    <a href="https://docs.getbindu.com"><strong>Dokumentation</strong></a> ·
+    <a href="https://discord.gg/3w5zuYUuwt"><strong>Discord</strong></a>
+  </p>
 </div>
 
 ---
 
-**Bindu** (ausgesprochen: _binduu_) ist eine Betriebsschicht für KI-Agenten, die Identitäts-, Kommunikations- und Zahlungsfunktionen bereitstellt. Es bietet einen produktionsbereiten Dienst mit einer praktischen API, um Agenten über verteilte Systeme hinweg zu verbinden, zu authentifizieren und zu orchestrieren, unter Verwendung offener Protokolle: **A2A**, **AP2** und **X402**.Mit einer verteilten Architektur (Task-Manager, Scheduler, Speicher) ermöglicht Bindu eine schnelle Entwicklung und einfache Integration mit jedem KI-Framework. Transformieren Sie jedes Agenten-Framework in einen vollständig interoperablen Dienst für Kommunikation, Zusammenarbeit und Handel im Internet der Agenten.
+## Was Sie erhalten
 
-<p align="center">
-  <strong>🌟 <a href="https://getbindu.com">Registrieren Sie Ihren Agenten</a> • 🌻 <a href="https://docs.getbindu.com">Dokumentation</a> • 💬 <a href="https://discord.gg/3w5zuYUuwt">Discord-Community</a></strong>
-</p>
+Wenn Sie einen Handler mit `bindufy(config, handler)` einwickeln, spricht der Prozess Standardprotokolle, signiert jede Antwort und wird zahlungsbereit. Hier ist, was es für Sie tut, gruppiert nach Kategorien:
 
+<br>
+
+**Protokoll - Mit der Welt sprechen**
+
+| Fähigkeit | Was es bedeutet |
+|---|---|
+| A2A JSON-RPC-Endpunkte | Das Standardprotokoll, das andere Agenten bereits verwenden. `message/send`, `tasks/get`, `message/stream` auf Port 3773. |
+| Push-Benachrichtigungen | Webhook-Callbacks bei Aufgabenstatusänderungen - kein Polling erforderlich. |
+| Sprachneutral | Python-, TypeScript- und Kotlin-SDKs teilen sich einen gRPC-Kern. Gleiches Protokoll, gleiche DID, gleicher Auth. |
+
+<br>
+
+**Identität und Zugriff - Beweisen, wer anruft**
+
+| Fähigkeit | Was es bedeutet |
+|---|---|
+| DID-Identität (Ed25519) | Jedes zurückgegebene Artefakt ist signiert. Aufrufer verifizieren mit W3C-Standard-DIDs - keine gemeinsamen Geheimnisse. |
+| OAuth2 über Ory Hydra | Bereichsbezogene Token (`agent:read`, `agent:write`, `agent:execute`) statt eines Alles-oder-Nichts-Bearers. |
+
+<br>
+
+**Handel und Erreichbarkeit - Zahlungen erhalten und erreichbar sein**
+
+| Fähigkeit | Was es bedeutet |
+|---|---|
+| x402-Zahlungen | Mit einem Flag verlangt der Agent USDC auf Base, bevor er eine Anfrage verarbeitet. Die Zahlungsprüfung läuft vor Ihrem Handler. |
+| Öffentlicher Tunnel | `expose: true` öffnet einen FRP-Tunnel, damit Ihr lokaler Agent vom öffentlichen Internet erreichbar ist. |
 
 ---
 
-<br/>
-
-## 🎥 Sehen Sie Bindu in Aktion
-
-<div align="center">
-  <a href="https://www.youtube.com/watch?v=qppafMuw_KI" target="_blank">
-    <img src="https://img.youtube.com/vi/qppafMuw_KI/maxresdefault.jpg" alt="Bindu Demo" width="640" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />
-  </a>
-</div>
-
-<br/>
-
-## 📋 Voraussetzungen
-
-Stellen Sie vor der Installation von Bindu sicher, dass Sie:
-
-- **Python 3.12 oder höher** - [Download here](https://www.python.org/downloads/)
-- **UV-Paketmanager** - [Installation guide](https://github.com/astral-sh/uv)
-- **API-Schlüssel erforderlich**: Setzen Sie `OPENROUTER_API_KEY` oder `OPENAI_API_KEY` in Ihren Umgebungsvariablen. Kostenlose OpenRouter-Modelle sind für Tests verfügbar.
-
-
-### Überprüfen Sie Ihre Einrichtung
+## Installation
 
 ```bash
-# Check Python version
-uv run python --version  # Should show 3.12 or higher
-
-# Check UV installation
-uv --version
+uv add bindu
 ```
 
----
-
-<br/>
-
-## 📦 Installation
-<details>
-<summary><b>Benutzerhinweis (Git & GitHub Desktop)</b></summary>
-
-Auf einigen Windows-Systemen wird git möglicherweise im Eingabeaufforderungsfenster nicht erkannt, selbst nach der Installation aufgrund von PATH-Konfigurationsproblemen.
-
-Wenn Sie auf dieses Problem stoßen, können Sie *GitHub Desktop* als Alternative verwenden:
-
-1. Installieren Sie GitHub Desktop von https://desktop.github.com/
-2. Melden Sie sich mit Ihrem GitHub-Konto an
-3. Klonen Sie das Repository mit der Repository-URL:
-   https://github.com/getbindu/Bindu.git
-
-GitHub Desktop ermöglicht es Ihnen, zu klonen, Branches zu verwalten, Änderungen zu committen und Pull-Requests zu öffnen, ohne die Befehlszeile zu verwenden.
-
-</details>
+Für einen Entwicklungs-Checkout mit Tests:
 
 ```bash
-# Install Bindu
-uv add bindu
-
-# For development (if contributing to Bindu)
-# Create and activate virtual environment
-uv venv --python 3.12.9
-source .venv/bin/activate  # On macOS/Linux
-# .venv\Scripts\activate  # On Windows
-
+git clone https://github.com/getbindu/Bindu.git
+cd Bindu
 uv sync --dev
 ```
 
-<details>
-<summary><b>Häufige Installationsprobleme</b> (klicken, um zu erweitern)</summary>
-
-<br/>
-
-| Problem | Lösung |
-|-------|----------|| `uv: command not found` | Starten Sie Ihr Terminal neu, nachdem Sie UV installiert haben. Unter Windows verwenden Sie PowerShell |
-| `Python version not supported` | Installieren Sie Python 3.12+ von [python.org](https://www.python.org/downloads/) |
-| Virtuelle Umgebung wird nicht aktiviert (Windows) | Verwenden Sie PowerShell und führen Sie `.venv\Scripts\activate` aus |
-| `Microsoft Visual C++ required` | Laden Sie [Visual C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/) herunter |
-| `ModuleNotFoundError` | Aktivieren Sie venv und führen Sie `uv sync --dev` aus |
-
-</details>
+Python 3.12+ und [uv](https://github.com/astral-sh/uv) erforderlich. Für das Ausführen der Beispiele wird mindestens ein API-Schlüssel für einen LLM-Anbieter benötigt (`OPENROUTER_API_KEY`, `OPENAI_API_KEY` oder `MINIMAX_API_KEY`).
 
 ---
 
-<br/>
+## Hallo Agent
 
-## 🚀 Schnellstart
-
-### Option 1: Verwendung von Cookiecutter (Empfohlen)
-
-**Zeit bis zum ersten Agenten: ~2 Minuten ⏱️**
-
-```bash
-# Install cookiecutter
-uv add cookiecutter
-
-# Create your Bindu agent
-uvx cookiecutter https://github.com/getbindu/create-bindu-agent.git
-```
-
-<div align="center">
-  <a href="https://youtu.be/obY1bGOoWG8?si=uEeDb0XWrtYOQTL7" target="_blank">
-    <img src="https://img.youtube.com/vi/obY1bGOoWG8/maxresdefault.jpg" alt="Create Production Ready Agent" width="640" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />
-  </a>
-</div>
-
-Ihr lokaler Agent wird zu einem aktiven, sicheren, auffindbaren Dienst. [Learn more →](https://docs.getbindu.com/bindu/create-bindu-agent/overview)
-
-> **💡 Profi-Tipp:** Mit Cookiecutter erstellte Agenten enthalten GitHub Actions, die Ihren Agenten automatisch im [GetBindu.com](https://getbindu.com) registrieren, wenn Sie in Ihr Repository pushen.
-
-### Option 2: Manuelle Einrichtung
-
-Erstellen Sie Ihr Agentenskript `my_agent.py`:
+Das gesamte Konzept von Bindu ist in einer Datei klar ersichtlich - erstellen Sie jeden Agenten, geben Sie ihn an `bindufy()`, und Ihr Prozess kommt als signierter A2A-Mikroservice heraus. Der folgende Block ist vollständig und lauffähig.
 
 ```python
 import os
-
 from bindu.penguin.bindufy import bindufy
 from agno.agent import Agent
-from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.models.openai import OpenAIChat
+from agno.tools.duckduckgo import DuckDuckGoTools
 
-# Define your agent
+# 1. Erstellen Sie Ihren Agenten mit Ihrem bevorzugten Framework. Bindu
+#    kümmert sich nicht darum, was drin ist - es braucht nur etwas Aufrufbares.
 agent = Agent(
     instructions="You are a research assistant that finds and summarizes information.",
     model=OpenAIChat(id="gpt-4o"),
     tools=[DuckDuckGoTools()],
 )
 
-# Configuration
+# 2. Sagen Sie Bindu, wer Sie sind und wo der Agent lebt. `expose: True`
+#    öffnet einen öffentlichen FRP-Tunnel - lassen Sie dies für lokale Entwicklung weg.
 config = {
-    "author": "your.email@example.com",
+    "author": "you@example.com",
     "name": "research_agent",
-    "description": "A research assistant agent",
+    "description": "Research assistant with web search.",
     "deployment": {
         "url": os.getenv("BINDU_DEPLOYMENT_URL", "http://localhost:3773"),
         "expose": True,
     },
-    "skills": ["skills/question-answering", "skills/pdf-processing"]
+    "skills": ["skills/question-answering"],
 }
 
-# Handler function
+# 3. Handler-Vertrag: (messages) -> response. Das ist alles.
 def handler(messages: list[dict[str, str]]):
-    """Process messages and return agent response.
+    return agent.run(input=messages)
 
-    Args:
-        messages: List of message dictionaries containing conversation history
-
-    Returns:
-        Agent response result
-    """
-    result = agent.run(input=messages)
-    return result
-
-# Bindu-fy it
+# 4. bindufy() bootet den HTTP-Server, erstellt Ihre DID, registriert sich bei Hydra
+#    (wenn auth aktiviert ist) und beginnt, A2A-Aufrufe zu akzeptieren.
 bindufy(config, handler)
-
-# Use tunnel to expose your agent to the internet
-# bindufy(config, handler, launch=True)
 ```
 
-![Sample Agent](../assets/agno-simple.png)
-
-Ihr Agent ist jetzt unter der in `deployment.url` konfigurierten URL aktiv.
-
-Setzen Sie einen benutzerdefinierten Port ohne Codeänderungen:
-
-```bash
-# Linux/macOS
-export BINDU_PORT=4000
-
-# Windows PowerShell
-$env:BINDU_PORT="4000"
-```
-
-Vorhandene Beispiele, die `http://localhost:3773` verwenden, werden automatisch überschrieben, wenn `BINDU_PORT` gesetzt ist.
-
-### Option 3: Zero-Config Lokaler Agent
-
-Versuchen Sie Bindu, ohne Postgres, Redis oder andere Cloud-Dienste einzurichten. Läuft vollständig lokal mit In-Memory-Speicher und Scheduler.
-
-```bash
-python examples/beginner_zero_config_agent.py
-```
-
-### Option 4: Minimaler Echo-Agent (Test)
+Führen Sie dies aus, und der Agent ist live auf der konfigurierten URL. Benötigen Sie einen anderen Port? Exportieren Sie `BINDU_PORT=4000` - keine Codeänderung.
 
 <details>
-<summary><b>Minimalbeispiel anzeigen</b> (klicken zum Erweitern)</summary>
+<summary>TypeScript-Äquivalent</summary>
 
-Kleinster möglicher funktionierender Agent:
+```typescript
+import { bindufy } from "@bindu/sdk";
+import OpenAI from "openai";
 
-```python
-import os
+const openai = new OpenAI();
 
-from bindu.penguin.bindufy import bindufy
-
-def handler(messages):
-    return [{"role": "assistant", "content": messages[-1]["content"]}]
-
-config = {
-    "author": "your.email@example.com",
-    "name": "echo_agent",
-    "description": "A basic echo agent for quick testing.",
-    "deployment": {
-        "url": os.getenv("BINDU_DEPLOYMENT_URL", "http://localhost:3773"),
-        "expose": True,
-    },
-    "skills": []
-}
-
-bindufy(config, handler)
-
-# Use tunnel to expose your agent to the internet
-# bindufy(config, handler, launch=True)
+bindufy({
+  author: "you@example.com",
+  name: "research_agent",
+  description: "Research assistant.",
+  deployment: { url: "http://localhost:3773", expose: true },
+  skills: ["skills/question-answering"],
+}, async (messages) => {
+  const response = await openai.chat.completions.create({
+    model: "gpt-4o",
+    messages: messages.map(m => ({ role: m.role as "user" | "assistant" | "system", content: m.content })),
+  });
+  return response.choices[0].message.content || "";
+});
 ```
 
-**Führen Sie den Agenten aus:**
-
-```bash
-# Start the agent
-python examples/echo_agent.py
-```
+Das TypeScript-SDK bootet automatisch den Python-Kern. Gleiches Protokoll, gleiche DID. Vollständiges Beispiel unter [`examples/typescript-openai-agent/`](examples/typescript-openai-agent/).
 
 </details>
 
 <details>
-<summary><b>Testen Sie den Agenten mit curl</b> (klicken zum Erweitern)</summary>
+<summary>Agent mit curl aufrufen</summary>
 
-<br/>
-
-Eingabe:
 ```bash
-curl --location 'http://localhost:3773/' \
---header 'Content-Type: application/json' \
---data '{
+curl -X POST http://localhost:3773/ \
+  -H 'Content-Type: application/json' \
+  -d '{
     "jsonrpc": "2.0",
     "method": "message/send",
+    "id": "<uuid>",
     "params": {
-        "message": {
-            "role": "user",
-            "parts": [
-                {
-                    "kind": "text",
-                    "text": "Quote"
-                }
-            ],
-            "kind": "message",
-            "messageId": "550e8400-e29b-41d4-a716-446655440038",
-            "contextId": "550e8400-e29b-41d4-a716-446655440038",
-            "taskId": "550e8400-e29b-41d4-a716-446655440300"
-        },
-        "configuration": {
-            "acceptedOutputModes": [
-                "application/json"
-            ]
-        }
-    },
-    "id": "550e8400-e29b-41d4-a716-446655440024"
-}'
-```
-
-Ausgabe:
-```bash
-{
-    "jsonrpc": "2.0",
-    "id": "550e8400-e29b-41d4-a716-446655440024",
-    "result": {
-        "id": "550e8400-e29b-41d4-a716-446655440301",
-        "context_id": "550e8400-e29b-41d4-a716-446655440038",
-        "kind": "task",
-        "status": {
-            "state": "submitted",
-            "timestamp": "2025-12-16T17:10:32.116980+00:00"
-        },
-        "history": [
-            {
-                "message_id": "550e8400-e29b-41d4-a716-446655440038",
-                "context_id": "550e8400-e29b-41d4-a716-446655440038",
-                "task_id": "550e8400-e29b-41d4-a716-446655440301",
-                "kind": "message",
-                "parts": [
-                    {
-                        "kind": "text",
-                        "text": "Quote"
-                    }
-                ],
-                "role": "user"
-            }
-        ]
+      "message": {
+        "role": "user",
+        "kind": "message",
+        "parts": [{"kind": "text", "text": "Hello"}],
+        "messageId": "<uuid>",
+        "contextId": "<uuid>",
+        "taskId": "<uuid>"
+      }
     }
-}
+  }'
 ```
 
-Überprüfen Sie den Status der Aufgabe
-```bash
-curl --location 'http://localhost:3773/' \
---header 'Content-Type: application/json' \
---data '{
-    "jsonrpc": "2.0",
-    "method": "tasks/get",
-    "params": {
-        "taskId": "550e8400-e29b-41d4-a716-446655440301"
-    },
-    "id": "550e8400-e29b-41d4-a716-446655440025"
-}'
-```
-
-Ausgabe:
-```bash
-{
-    "jsonrpc": "2.0",
-    "id": "550e8400-e29b-41d4-a716-446655440025",
-    "result": {
-        "id": "550e8400-e29b-41d4-a716-446655440301",
-        "context_id": "550e8400-e29b-41d4-a716-446655440038",
-        "kind": "task",
-        "status": {
-            "state": "completed",
-            "timestamp": "2025-12-16T17:10:32.122360+00:00"
-        },
-        "history": [
-            {
-                "message_id": "550e8400-e29b-41d4-a716-446655440038",
-                "context_id": "550e8400-e29b-41d4-a716-446655440038",
-                "task_id": "550e8400-e29b-41d4-a716-446655440301",
-                "kind": "message",
-                "parts": [
-                    {
-                        "kind": "text",
-                        "text": "Quote"
-                    }
-                ],
-                "role": "user"
-            },
-            {
-                "role": "assistant",
-                "parts": [
-                    {
-                        "kind": "text",
-                        "text": "Quote"
-                    }
-                ],
-                "kind": "message",
-                "message_id": "2f2c1a8e-68fa-4bb7-91c2-eac223e6650b",
-                "task_id": "550e8400-e29b-41d4-a716-446655440301",
-                "context_id": "550e8400-e29b-41d4-a716-446655440038"
-            }
-        ],
-        "artifacts": [
-            {
-                "artifact_id": "22ac0080-804e-4ff6-b01c-77e6b5aea7e8",
-                "name": "result",
-                "parts": [
-                    {
-                        "kind": "text",
-                        "text": "Quote",
-                        "metadata": {
-                            "did.message.signature": "5opJuKrBDW4woezujm88FzTqRDWAB62qD3wxKz96Bt2izfuzsneo3zY7yqHnV77cq3BDKepdcro2puiGTVAB52qf"  # pragma: allowlist secret
-                        }
-                    }
-                ]
-            }
-        ]
-    }
-}
-```
+Pollen Sie mit demselben `taskId` `tasks/get`, bis der Status `completed` ist. Das zurückgegebene Artefakt trägt eine DID-Signatur unter `metadata["did.message.signature"]`.
 
 </details>
 
- 
+---
+
+## Wie es passt
+
+Was passiert also tatsächlich, wenn dieser `bindufy()`-Aufruf wirksam wird? Der Handler ist der einzige Code, den Sie schreiben. Alles andere ist das Scaffolding von Bindu um ihn herum:
+
+```mermaid
+flowchart TD
+    A[your handler] --> B["bindufy(config, handler)"]
+
+    B --> C[Bindu Core :3773]
+
+    subgraph D[Bindu Core Internals]
+        D1["OAuth2 (Hydra)"]
+        D2["DID Verification"]
+        D3["x402 Payment (Optional)"]
+        D4["Task Manager & Scheduler"]
+    end
+
+    C --> D1
+    C --> D2
+    C --> D3
+    C --> D4
+
+    D4 --> E[A2A Signed Response"]
+```
+
+`bindufy()` ist ein dünner Wrapper. Ihr Handler bleibt rein - `(messages) -> response`. Bindu besitzt Identität, Protokoll, Auth, Zahlungen, Speicherung und Planung.
 
 ---
 
- 
+## Einen gesicherten Agenten aufrufen
 
-## 🚀 Kernfunktionen
-| Feature | Beschreibung | Dokumentation |
-| :--- | :--- | :--- |
-| **Authentifizierung** | Sicherer API-Zugriff mit Ory Hydra OAuth2 (optional für die Entwicklung) | [Guide →](../docs/AUTHENTICATION.md) |
-| 💰 **Zahlungsintegration (X402)** | Akzeptieren Sie USDC-Zahlungen auf der Base-Blockchain, bevor geschützte Methoden ausgeführt werden | [Guide →](../docs/PAYMENT.md) |
-| 💾 **PostgreSQL-Speicher** | Persistenter Speicher für Produktionsbereitstellungen (optional - InMemoryStorage standardmäßig) | [Guide →](../docs/STORAGE.md) |
-| 📋 **Redis-Planer** | Verteilte Aufgabenplanung für Multi-Worker-Bereitstellungen (optional - InMemoryScheduler standardmäßig) | [Guide →](../docs/SCHEDULER.md) |
-| 🎯 **Fähigkeitssystem** | Wiederverwendbare Fähigkeiten, die Agenten für intelligentes Aufgabenrouting bewerben und ausführen | [Guide →](../docs/SKILLS.md) |
-| 🤝 **Agentenverhandlung** | Fähigkeitsbasierte Agentenauswahl für intelligente Orchestrierung | [Guide →](../docs/NEGOTIATION.md) |
-| 🌐 **Tunneling** | Lokale Agenten für Tests im Internet verfügbar machen (**nur lokale Entwicklung, nicht für die Produktion**) | [Guide →](../docs/TUNNELING.md) |
-| 📬 **Push-Benachrichtigungen** | Echtzeit-Webhooks für Aufgabenaktualisierungen - kein Polling erforderlich | [Guide →](../docs/NOTIFICATIONS.md) |
-| 📊 **Beobachtbarkeit & Überwachung** | Verfolgen Sie die Leistung und debuggen Sie Probleme mit OpenTelemetry und Sentry | [Guide →](../docs/OBSERVABILITY.md) |
-| 🔄 **Wiederholungsmechanismus** | Automatische Wiederholung mit exponentiellem Backoff für resiliente Agenten | [Guide →](docs.getbindu.com/bindu/learn/retry/overview) |
-| 🔑 **Dezentrale Identifikatoren (DIDs)** | Kryptografische Identität für überprüfbare, sichere Agenteninteraktionen und Zahlungsintegration | [Guide →](../docs/DID.md) |
-| 🏥 **Gesundheitsprüfung & Metriken** | Überwachen Sie die Gesundheit und Leistung von Agenten mit integrierten Endpunkten | [Guide →](../docs/HEALTH_METRICS.md) |
+> **TL;DR** - Wenn `AUTH__ENABLED=true`, wird für jeden Aufruf ein Hydra-Bearer-Token und drei `X-DID-*`-Header benötigt. Python-Client: ~25 Zeilen, [unten](#step-2--pick-your-client). Postman: Fügen Sie ein Skript ein. Der Rest dieses Abschnitts erklärt warum und wie es funktioniert, und was schiefgeht, wenn es nicht funktioniert.
+
+Das `curl`-Beispiel in *Hallo Agent* funktioniert, weil auth standardmäßig deaktiviert ist - jeder kann POST an Ihren Agenten. Wenn Sie auf `AUTH__ENABLED=true AUTH__PROVIDER=hydra` umschalten, wird Ihr Agent streng. Jetzt muss jeder Anrufer zwei Fragen beantworten, bevor der Handler läuft:
+
+1. **Haben Sie die Erlaubnis, mich anzurufen?** - Zeigen Sie ein gültiges OAuth2-Token von Hydra.
+2. **Sind Sie wirklich das, was Sie sagen?** - Signieren Sie die Anfrage mit einem DID-Schlüssel.
+
+Denken Sie daran wie das Boarding bei einem Flug: Der Boarding-Pass (OAuth-Token) sagt "Ja, Sie haben einen Sitzplatz auf diesem Flug", und der Reisepass (DID-Signatur) sagt "Und Sie sind wirklich die Person auf diesem Boarding-Pass." Der Server prüft beides.
+
+Die vollständige Theorie finden Sie in [`docs/AUTHENTICATION.md`](docs/AUTHENTICATION.md) und [`docs/DID.md`](docs/DID.md) - einfaches Englisch, keine Krypto-Hintergrundkenntnisse vorausgesetzt. Unten finden Sie die praktische "Ich möchte nur meinen Agenten aufrufen"-Version.
+
+<br>
+
+### Drei zusätzliche Header
+
+Zusammen mit dem üblichen `Authorization: Bearer <hydra-jwt>` trägt jede gesicherte Anfrage:
+
+| Header | Wert |
+|---|---|
+| `X-DID` | Ihre DID-Zeichenkette, z.B. `did:bindu:you_at_example_com:myagent:<uuid>` |
+| `X-DID-Timestamp` | Aktuelle Unix-Sekunden (Server erlaubt 5 Minuten Spielraum) |
+| `X-DID-Signature` | `base58( Ed25519_sign( <signing payload> ) )` |
+
+**Die Signatur-Payload** wird auf dem Server wie folgt rekonstruiert:
+
+```python
+json.dumps({"body": <raw-body-string>, "did": <did>, "timestamp": <ts>}, sort_keys=True)
+```
+
+Zwei Stolpersteine, die Sie beißen werden, bis Sie sie verstanden haben:
+
+- **Passen Sie die JSON-Abstände von Python an.** Pythons Standard `json.dumps` schreibt `", "` und `": "` (mit Leerzeichen). In JS schreibt `JSON.stringify` diese ohne. Wenn Ihre Payload anders serialisiert, sieht Ed25519 andere Bytes und der Server gibt `reason="crypto_mismatch"` zurück.
+- **Signieren Sie das, was Sie senden.** Wenn Sie den Body parsen, ändern, neu serialisieren und senden - Sie haben die falschen Bytes signiert. Erstellen Sie den Body-String **einmal**, signieren Sie genau diese Bytes, senden Sie genau diese Bytes.
+
+<br>
+
+### Schritt 1 - Erhalten Sie ein Bearer-Token von Hydra
+
+Der Agent druckt einen lauffähigen curl beim Startbanner. Kurze Version:
+
+```bash
+SECRET=$(jq -r '.[].client_secret' < .bindu/oauth_credentials.json)
+curl -X POST https://hydra.getbindu.com/oauth2/token \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "grant_type=client_credentials" \
+  -d "client_id=did:bindu:you_at_example_com:myagent:<uuid>" \
+  -d "client_secret=$SECRET" \
+  -d "scope=openid offline agent:read agent:write"
+```
+
+Die Antwort enthält ein `access_token`. Es ist eine Stunde lang gültig - cachen Sie es, holen Sie es bei Bedarf neu.
+
+<br>
+
+### Schritt 2 - Wählen Sie Ihren Client
+
+**Python - Das kürzeste lauffähige Beispiel.** Liest die eigenen Schlüssel des Agents (Bindu schreibt sie beim ersten Boot nach `.bindu/`), signiert eine Anfrage, pollt nach dem Ergebnis. Selbstaufruf funktioniert, weil der Schlüssel des Agents eine gültige Anrufer-Identität ist.
+
+```python
+import base58, httpx, json, time, uuid
+from pathlib import Path
+from cryptography.hazmat.primitives import serialization
+
+# 1. Laden Sie die Schlüssel, die Bindu beim ersten Boot geschrieben hat
+priv  = serialization.load_pem_private_key(Path(".bindu/private.pem").read_bytes(), password=None)
+creds = next(iter(json.loads(Path(".bindu/oauth_credentials.json").read_text()).values()))
+did   = creds["client_id"]            # DID funktioniert auch als Hydra client_id
+
+# 2. Tauschen Sie Anmeldeinformationen gegen ein kurzlebiges JWT
+bearer = httpx.post("https://hydra.getbindu.com/oauth2/token", data={
+    "grant_type": "client_credentials",
+    "client_id": creds["client_id"], "client_secret": creds["client_secret"],
+    "scope": "openid offline agent:read agent:write",
+}).json()["access_token"]
+
+# 3. Erstellen Sie den Body einmal - dies sind die Bytes, die wir signieren und senden
+tid = str(uuid.uuid4())
+body = json.dumps({
+    "jsonrpc": "2.0", "method": "message/send", "id": str(uuid.uuid4()),
+    "params": {"message": {
+        "role": "user", "kind": "message",
+        "parts": [{"kind": "text", "text": "Hello!"}],
+        "messageId": str(uuid.uuid4()), "contextId": str(uuid.uuid4()), "taskId": tid,
+    }},
+})
+
+# 4. Signatur: base58(Ed25519( json.dumps({body,did,timestamp}, sort_keys=True) ))
+ts      = int(time.time())
+payload = json.dumps({"body": body, "did": did, "timestamp": ts}, sort_keys=True)
+sig     = base58.b58encode(priv.sign(payload.encode())).decode()
+
+# 5. Feuern Sie es ab
+r = httpx.post("http://localhost:3773/", content=body, headers={
+    "Content-Type":    "application/json",
+    "Authorization":   f"Bearer {bearer}",
+    "X-DID":           did,
+    "X-DID-Timestamp": str(ts),
+    "X-DID-Signature": sig,
+})
+print(r.status_code, r.json())
+```
+
+Für eine voll funktionsfähige Version mit Polling und Fehlerbehandlung siehe - [`examples/hermes_agent/call.py`](examples/hermes_agent/call.py)。
+
+<br>
+
+**Postman - Fügen Sie ein Skript in Ihre Sammlung ein.**
+
+1. Öffnen Sie Ihre Sammlung → Tab **Pre-request Script** → Fügen Sie den Inhalt von [`docs/postman-did-signing.js`](docs/postman-did-signing.js) ein.
+2. Setzen Sie zwei Sammlungsvariablen: `bindu_did` (Ihre DID-Zeichenkette) und `bindu_did_seed` (Ihr 32-Byte Ed25519-Seed, base64-kodiert).
+3. Fügen Sie einen `Authorization: Bearer {{bindu_bearer}}`-Header hinzu und legen Sie Ihr Hydra-Token in `bindu_bearer`.
+4. Drücken Sie Send. Das Skript signiert genau die Body-Bytes, die Postman sendet, und setzt die drei `X-DID-*`-Header für Sie.
+
+Postman Desktop v11+ erforderlich (`crypto.subtle` benötigt Ed25519).
+
+<br>
+
+**Gewöhnliches curl - technisch möglich, normalerweise lästig.** Die Signatur hängt von den Body-Bytes ab, die Sie senden, also benötigen Sie zuerst ein Hilfsskript, um die Signatur zu berechnen, und ersetzen Sie sie dann im curl-Aufruf. Wenn Sie dies tun, sind Sie wahrscheinlich besser dran mit dem Python-Client oben.
+
+<br>
+
+### Wenn die Signatur fehlschlägt
+
+Der Server-Log protokolliert einen von drei Gründen. Wenn Ihre Anfrage mit 403 abgelehnt wird, fragen Sie den Operator (oder überprüfen Sie selbst die Server-Logs):
+
+| Log sagt | Was es bedeutet | Lösung |
+|---|---|---|
+| `timestamp_out_of_window` | Ihr `X-DID-Timestamp` ist mehr als 5 Minuten von der Server-Uhr entfernt, oder Sie haben einen alten Zeitstempel wiederverwendet | Berechnen Sie `int(time.time())` bei jeder Anfrage neu |
+| `malformed_input` | base58-Dekodierung der Signatur oder des öffentlichen Schlüssels fehlgeschlagen | Prüfen Sie, ob `X-DID-Signature` URL-kodiert, abgeschnitten oder in Anführungszeichen eingeschlossen ist |
+| `crypto_mismatch` | Bytes, die Sie signiert haben ≠ Bytes, die Sie gesendet haben | Rekonstruieren Sie die Payload mit `sort_keys=True` und Pythons Standard-JSON-Abständen; signieren Sie den rohen Body-String einmal und senden Sie dieselben Bytes |
+
+Wir haben beim Testen einen scharfen Ausfallmodus getroffen: Wenn `crypto_mismatch` anhält und Sie *sicher* sind, dass Ihre Bytes übereinstimmen, kann der von Hydra für diese DID gespeicherte öffentliche Schlüssel von einer alten Registrierung veraltet sein. Lösung: Stoppen Sie den Agenten, löschen Sie `.bindu/oauth_credentials.json`, starten Sie neu - der Hydra-Client-Datensatz wird mit dem aktuellen Schlüssel aktualisiert.
 
 ---
 
-<br/>
+## Gateway - Multi-Agent-Orchestrierung
 
-## 🎨 Chat-Benutzeroberfläche
+Ein einzelner `bindufy()`-eingewickelter Agent ist ein Mikroservice. **Bindu Gateway** ist ein aufgabenorientierter Orchestrator, der darüber sitzt: Geben Sie ihm eine Benutzeranfrage und einen Katalog von A2A-Agenten, und ein Planer-LLM zerlegt die Aufgabe, ruft die richtigen Agenten über A2A auf und streamt die Ergebnisse als serverseitige Ereignisse. Kein DAG-Engine, kein separater Orchestrator-Service - das Planer-LLM wählt bei jedem Turn Tools.
 
-Bindu enthält eine schöne Chat-Oberfläche unter `http://localhost:5173`. Navigieren Sie zum `frontend`-Ordner und führen Sie `npm run dev` aus, um den Server zu starten.
+Außerhalb eines einzelnen Agents erhalten Sie:
+
+- **Ein Endpunkt: `POST /plan`** - Geben Sie ihm eine Abfrage und einen Agentenkatalog, erhalten Sie gestreamte Schritte.
+- **Agentenkatalog pro Anfrage** - Eine Liste externer Systemagenten, Fähigkeiten und Endpunkte wird übergeben. Das Gateway hostet selbst keine Flotte.
+- **Sitzungspersistenz (Supabase)** - Postgres-gestützte Komprimierung, Rollback und Multi-Turn-Historie.
+- **Native TypeScript A2A** - Kein Python-Subprozess, keine `@bindu/sdk`-Abhängigkeit im Gateway.
+- **Optionale DID-Signatur + Hydra-Integration** - Gateway ist identitäts-end-to-end.
+
+Minimaler Quickstart:
+
+```bash
+cd gateway
+npm install
+cp .env.example .env.local         # fill SUPABASE_*, GATEWAY_API_KEY, OPENROUTER_API_KEY
+npm run dev                        # → http://localhost:3774
+curl -sS http://localhost:3774/health
+```
+
+Wenden Sie zuerst zwei Supabase-Migrationen an (`gateway/migrations/001_init.sql`, `002_compaction_revert.sql`). Vollständiger Walkthrough und Operator-Referenz finden Sie in [`gateway/README.md`](gateway/README.md) und [`docs/GATEWAY.md`](docs/GATEWAY.md) (45-Minuten-End-to-End: sauberer Klon → drei verkettete Agents → ein Rezept schreiben → DID-Signatur).
+
+Gateway-Dokumentation:
+
+| Thema | Link |
+|---|---|
+| Übersicht | [docs.getbindu.com/bindu/gateway/overview](https://docs.getbindu.com/bindu/gateway/overview) |
+| Quickstart | [docs.getbindu.com/bindu/gateway/quickstart](https://docs.getbindu.com/bindu/gateway/quickstart) |
+| Multi-Agent-Planung | [docs.getbindu.com/bindu/gateway/multi-agent](https://docs.getbindu.com/bindu/gateway/multi-agent) |
+| Rezepte (Progressive-Disclosure-Playbook) | [docs.getbindu.com/bindu/gateway/recipes](https://docs.getbindu.com/bindu/gateway/recipes) |
+| Identität (DID-Signatur, Hydra) | [docs.getbindu.com/bindu/gateway/identity](https://docs.getbindu.com/bindu/gateway/identity) |
+| Produktionsbereitstellung | [docs.getbindu.com/bindu/gateway/production](https://docs.getbindu.com/bindu/gateway/production) |
+| API-Referenz | [docs.getbindu.com/api/introduction](https://docs.getbindu.com/api/introduction) |
+
+Für ein lauffähiges Multi-Agent-Demo siehe [`examples/gateway_test_fleet/`](examples/gateway_test_fleet/) - fünf kleine Agents auf lokalen Ports, ein Gateway, eine Abfrage.
+
+---
+
+## Unterstützte Frameworks und Beispiele
+
+Bringen Sie jedes Agenten-Framework mit, das Sie bereits mögen. Sie geben einen Handler an Bindu; es gibt Ihnen einen signierten A2A-Mikroservice. Unabhängig davon, was im Handler ist, ist der Fluss gleich.
+
+<br>
+
+| Sprache | In diesem Repo getestete Frameworks |
+|---|---|
+| **Python** | [AG2](https://github.com/ag2ai/ag2) · [Agno](https://github.com/agno-agi/agno) · [CrewAI](https://github.com/joaomdmoura/crewAI) · [Hermes Agent](https://github.com/NousResearch/hermes-agent) · [LangChain](https://github.com/langchain-ai/langchain) · [LangGraph](https://github.com/langchain-ai/langgraph) · [Notte](https://github.com/nottelabs/notte) |
+| **TypeScript** | [OpenAI SDK](https://github.com/openai/openai-node) · [LangChain.js](https://github.com/langchain-ai/langchainjs) |
+| **Kotlin** | [OpenAI Kotlin SDK](https://github.com/aallam/openai-kotlin) |
+| **Jede andere Sprache** | Über [gRPC-Kern](docs/grpc/) - fügen Sie ein SDK in wenigen hundert Zeilen hinzu |
+
+Kompatibel mit jedem LLM-Anbieter, der mit OpenAI- oder Anthropic-API spricht: [OpenRouter](https://openrouter.ai/) (100+ Modelle), [OpenAI](https://platform.openai.com/), [MiniMax](https://platform.minimaxi.com) und andere.
+
+<br>
+
+### Ein paar Beispiele zum Starten
+
+Fünf decken das Spektrum ab, was Bindu kann. Alle 20+ lauffähigen Beispiele finden Sie unter [`examples/`](examples/)。
+
+| Beispiel | Was es zeigt |
+|---|---|
+| [Agent Swarm](examples/agent_swarm/) | Multi-Agent-Zusammenarbeit - eine kleine "Gesellschaft" von Agno-Agenten, die sich gegenseitig Aufgaben zuweisen. |
+| [Premium Advisor](examples/premium-advisor/) | **x402-Zahlungen** - Anrufer müssen USDC auf Base zahlen, bevor der Handler läuft. |
+| [Hermes via Bindu](examples/hermes_agent/) | **Drittanbieter-Framework-Interop** - Nous Researchs Hermes-Agent in ~90 Zeilen bindufied. |
+| [Gateway Test Fleet](examples/gateway_test_fleet/) | Fünf kleine Agents + ein Gateway - Multi-Agent-Orchestrierung-Story End-to-End. |
+| [TypeScript OpenAI Agent](examples/typescript-openai-agent/) | **Polyglot-Proof** - Ein TS-Agent mit Bindu TS SDK bindufied; kein Python erforderlich. |
+
+**Vollständigen Katalog ansehen:** [`examples/`](examples/) - 20+ Agents decken CSV-Analyse, PDF-Q&A, Speech-to-Text, Web-Scraping, Cybersicherheits-Newsletter, mehrsprachige Zusammenarbeit, Blog-Schreiben und mehr ab.
+
+Ihr Framework fehlt? Öffnen Sie ein Issue oder fragen Sie auf [Discord](https://discord.gg/3w5zuYUuwt)。
+
+---
+
+## Demo
+
+<div align="center">
+  <a href="https://www.youtube.com/watch?v=qppafMuw_KI">
+    <img src="https://img.youtube.com/vi/qppafMuw_KI/maxresdefault.jpg" alt="Bindu demo video" width="640" />
+  </a>
+</div>
+
+Nach dem Ausführen von `cd frontend && npm run dev` ist eine eingebaute Chat-UI unter `http://localhost:5173` verfügbar。
 
 <p align="center">
-  <img src="../assets/agent-ui.png" alt="Bindu Agent UI" width="640" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />
+  <img src="../assets/agent-ui.png" alt="Bindu agent UI" width="640" />
 </p>
 
 ---
 
-<br/>
+## Kernfunktionen
 
-## 🌐 GetBindu.comDas [**GetBindu.com**](https://getbindu.com) ist ein öffentliches Verzeichnis aller Bindu-Agenten, das sie für das breitere Agenten-Ökosystem auffindbar und zugänglich macht.
+Alles unten ist optional und modular - minimale Installation ist nur der A2A-Server. Jede Zeile verlinkt auf einen spezifischen Leitfaden in [`docs/`](docs/)。
 
-### ✨ Automatische Registrierung mit Cookiecutter
+<br>
 
-Wenn Sie einen Agenten mit der Cookiecutter-Vorlage erstellen, enthält er eine vorkonfigurierte GitHub-Aktion, die Ihren Agenten automatisch im Verzeichnis registriert:
+**Identität und Zugriff**
 
-1. **Erstellen Sie Ihren Agenten** mit Cookiecutter
-2. **Pushen Sie zu GitHub** - Die GitHub-Aktion wird automatisch ausgelöst
-3. **Ihr Agent erscheint** im [GetBindu.com](https://getbindu.com)
+| Funktion | Leitfaden |
+|---|---|
+| Dezentrale Identitäten (DIDs) | [DID.md](docs/DID.md) |
+| Authentifizierung (Ory Hydra OAuth2) | [AUTHENTICATION.md](docs/AUTHENTICATION.md) |
 
-> **Hinweis**: Sammeln Sie Ihre `BINDU_PAT_TOKEN` von [getbindu.com](https://getbindu.com), um Ihren Agenten zu registrieren.
+<br>
 
-### 📝 Manuelle Registrierung
+**Protokoll und Infrastruktur**
 
-Der manuelle Registrierungsprozess befindet sich derzeit in der Entwicklung.
+| Funktion | Leitfaden |
+|---|---|
+| Fähigkeitensystem | [SKILLS.md](docs/SKILLS.md) |
+| Agent-Verhandlung | [NEGOTIATION.md](docs/NEGOTIATION.md) |
+| Push-Benachrichtigungen | [NOTIFICATIONS.md](docs/NOTIFICATIONS.md) |
+| PostgreSQL-Speicherung | [STORAGE.md](docs/STORAGE.md) |
+| Redis-Scheduler | [SCHEDULER.md](docs/SCHEDULER.md) |
+| Sprachneutral über gRPC | [GRPC_LANGUAGE_AGNOSTIC.md](docs/GRPC_LANGUAGE_AGNOSTIC.md) |
 
----
+<br>
 
-<br/>
+**Handel und Erreichbarkeit**
 
-## 🌌 Die Vision
+| Funktion | Leitfaden |
+|---|---|
+| x402-Zahlungen (USDC auf Base) | [PAYMENT.md](docs/PAYMENT.md) |
+| Tunneling (nur lokale Entwicklung) | [TUNNELING.md](docs/TUNNELING.md) |
 
-```
-a peek into the night sky
-}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
-{{            +             +                  +   @          {{
-}}   |                *           o     +                .    }}
-{{  -O-    o               .               .          +       {{
-}}   |                    _,.-----.,_         o    |          }}
-{{           +    *    .-'.         .'-.          -O-         {{
-}}      *            .'.-'   .---.   `'.'.         |     *    }}
-{{ .                /_.-'   /     \   .'-.\.                   {{
-}}         ' -=*<  |-._.-  |   @   |   '-._|  >*=-    .     + }}
-{{ -- )--           \`-.    \     /    .-'/                   }}
-}}       *     +     `.'.    '---'    .'.'    +       o       }}
-{{                  .  '-._         _.-'  .                   }}
-}}         |               `~~~~~~~`       - --===D       @   }}
-{{   o    -O-      *   .                  *        +          {{
-}}         |                      +         .            +    }}
-{{ jgs          .     @      o                        *       {{
-}}       o                          *          o           .  }}
-{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{
-```
+<br>
 
-_Jedes Symbol ist ein Agent — ein Funke von Intelligenz. Der winzige Punkt ist Bindu, der Ursprungspunkt im Internet der Agenten._
+**Zuverlässigkeit und Betrieb**
 
-### NightSky-Verbindung (In Arbeit)
-
-NightSky ermöglicht Schwärme von Agenten. Jeder Bindu ist ein Punkt, der Agenten mit der gemeinsamen Sprache von A2A, AP2 und X402 annotiert. Agenten können überall gehostet werden—Laptops, Clouds oder Cluster—und sprechen dennoch dasselbe Protokoll, vertrauen sich gegenseitig von Natur aus und arbeiten zusammen als ein einziger, verteilter Verstand.
-
-> **💭 Ein Ziel ohne Plan ist nur ein Wunsch.**
+| Funktion | Leitfaden |
+|---|---|
+| Retry mit exponentiellem Backoff | [Retry docs](https://docs.getbindu.com/bindu/learn/retry/overview) |
+| Observability (OpenTelemetry, Sentry) | [OBSERVABILITY.md](docs/OBSERVABILITY.md) |
+| Health-Checks und Metriken | [HEALTH_METRICS.md](docs/HEALTH_METRICS.md) |
 
 ---
 
-<br/>
+## Tests
 
-## 🛠️ Unterstützte Agenten-Frameworks
-
-Bindu ist **framework-unabhängig** und wurde getestet mit:
-
-- **AG2** (ehemals AutoGen)
-- **Agno**
-- **CrewAI**
-- **LangChain**
-- **LlamaIndex**
-- **FastAgent**
-
-Möchten Sie eine Integration mit Ihrem bevorzugten Framework? [Let us know on Discord](https://discord.gg/3w5zuYUuwt)!
-
----
-
-<br/>
-
-## 🧪 Testen
-
-Bindu hat eine **Testabdeckung von über 70%** (Ziel: über 80%):
+Bindu zielt auf 70% Testabdeckung ab (Ziel: 80%+):
 
 ```bash
-uv run pytest -n auto --cov=bindu --cov-report=term-missing
-uv run coverage report --skip-covered --fail-under=70
+uv run pytest tests/unit/ -v                                    # Schnelle Unit-Tests
+uv run pytest tests/integration/grpc/ -v -m e2e                 # gRPC E2E
+uv run pytest -n auto --cov=bindu --cov-report=term-missing     # Vollständige Suite
 ```
+
+CI führt bei jedem PR Unit-Tests, gRPC E2E und TypeScript SDK-Builds aus. Siehe [`.github/workflows/ci.yml`](.github/workflows/ci.yml)。
 
 ---
 
-<br/>
-
-## 🔧 Fehlersuche
+## Fehlerbehebung
 
 <details>
-<summary>Häufige Probleme</summary>
-
-<br/>
+<summary>Allgemeine Probleme</summary>
 
 | Problem | Lösung |
-|-------|----------|
-| `Python 3.12 not found` | Installieren Sie Python 3.12+ und setzen Sie es in den PATH, oder verwenden Sie `pyenv` |
-| `bindu: command not found` | Aktivieren Sie die virtuelle Umgebung: `source .venv/bin/activate` || `Port 3773 already in use` | Setze `BINDU_PORT=4000` oder überschreibe die URL mit `BINDU_DEPLOYMENT_URL=http://localhost:4000` |
-| Pre-commit schlägt fehl | Führe `pre-commit run --all-files` aus |
-| Tests schlagen fehl | Installiere Entwicklungsabhängigkeiten: `uv sync --dev` |
-| `Permission denied` (macOS) | Führe `xattr -cr .` aus, um erweiterte Attribute zu löschen |
+|---|---|
+| `uv: command not found` | Starten Sie Ihre Shell neu, nachdem Sie uv installiert haben. |
+| `Python version not supported` | Installieren Sie Python 3.12+ von [python.org](https://www.python.org/downloads/) oder über `pyenv`. |
+| `bindu: command not found` | Aktivieren Sie Ihr virtualenv: `source .venv/bin/activate`. |
+| `Port 3773 already in use` | Setzen Sie `BINDU_PORT=4000`, oder überschreiben Sie mit `BINDU_DEPLOYMENT_URL=http://localhost:4000`. |
+| `ModuleNotFoundError` | Führen Sie `uv sync --dev` aus. |
+| Pre-commit fehlgeschlagen | Führen Sie `pre-commit run --all-files` aus. |
+| `Permission denied` (macOS) | Führen Sie `xattr -cr .` aus, um erweiterte Attribute zu entfernen. |
 
-**Umgebung zurücksetzen:**
+Umgebung zurücksetzen:
+
 ```bash
-rm -rf .venv
-uv venv --python 3.12.9
-uv sync --dev
+rm -rf .venv && uv venv --python 3.12.9 && uv sync --dev
 ```
 
-**Windows PowerShell:**
-```bash
-Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-```
+Unter Windows PowerShell benötigen Sie möglicherweise `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser`。
 
 </details>
 
 ---
 
-<br/>
+## Bekannte Probleme
 
-## 🤝 Mitwirken
+Wenn Sie Bindu in der Produktion betreiben, lesen Sie zuerst [`bugs/known-issues.md`](bugs/known-issues.md). Es ist ein Katalog pro Subsystem mit Workarounds. Postmortems für behobene Bugs finden Sie unter [`bugs/core/`](bugs/core/), [`bugs/gateway/`](bugs/gateway/), [`bugs/sdk/`](bugs/sdk/) und [`bugs/frontend/`](bugs/frontend/)。
 
-Wir freuen uns über Beiträge! Schließe dich uns auf [Discord](https://discord.gg/3w5zuYUuwt) an. Wähle den Kanal, der am besten zu deinem Beitrag passt.
+Aktuelle High-Priority-Elemente:
+
+| Subsystem | Slug | Symptom |
+|---|---|---|
+| Core | [`x402-middleware-fails-open-on-body-parse`](bugs/known-issues.md#x402-middleware-fails-open-on-body-parse) | Verzerrter JSON-Body umgeht Zahlungsprüfung |
+| Core | [`x402-no-replay-prevention`](bugs/known-issues.md#x402-no-replay-prevention) | Eine Zahlung arbeitet unbegrenzt bis `validBefore` |
+| Core | [`x402-no-signature-verification`](bugs/known-issues.md#x402-no-signature-verification) | EIP-3009-Signatur wird nie verifiziert |
+| Core | [`x402-balance-check-skipped-on-missing-contract-code`](bugs/known-issues.md#x402-balance-check-skipped-on-missing-contract-code) | Falsch konfiguriertes RPC umgeht Bilanzprüfung stillschweigend |
+| Gateway | [`context-window-hardcoded`](bugs/known-issues.md#context-window-hardcoded) | Komprimierungsschwellenwert geht von einem 200k-Token-Fenster aus |
+| Gateway | [`poll-budget-unbounded-wall-clock`](bugs/known-issues.md#poll-budget-unbounded-wall-clock) | `sendAndPoll` kann 5 Minuten pro Tool-Aufruf stillstehen |
+| Gateway | [`no-session-concurrency-guard`](bugs/known-issues.md#no-session-concurrency-guard) | Zwei `/plan`-Aufrufe in derselben Sitzung verwirren die Historie |
+
+Neues Problem? Öffnen Sie ein GitHub-Issue mit Slug-Referenz (z.B. *"Fixes `context-window-hardcoded`"*)。 Haben Sie einen Fix? Entfernen Sie den Eintrag aus `known-issues.md` und fügen Sie ein datiertes Postmortem hinzu - siehe [`bugs/README.md`](bugs/README.md) für Vorlage。
+
+---
+
+## Beitrag
+
+Klonen, einrichten und Pre-Commit-Hooks ausführen:
 
 ```bash
 git clone https://github.com/getbindu/Bindu.git
 cd Bindu
-uv venv --python 3.12.9
-source .venv/bin/activate
+uv venv --python 3.12.9 && source .venv/bin/activate
 uv sync --dev
 pre-commit run --all-files
 ```
 
-> 📖 [Contributing Guidelines](../.github/contributing.md)
+Diskussion und Hilfe finden auf [Discord](https://discord.gg/3w5zuYUuwt)。 Vollständiger Leitfaden unter [`.github/contributing.md`](.github/contributing.md)。 Wir haben eine offene Liste von Agents, die wir bindufied sehen möchten - [tragen Sie bei](https://www.notion.so/getbindu/305d3bb65095808eac2bf720368e9804?v=305d3bb6509580189941000cfad83ae7&source=copy_link)。
 
 ---
 
-<br/>
-
-## 📜 Lizenz
-
-Bindu ist Open Source unter der [Apache License 2.0](https://choosealicense.com/licenses/apache-2.0/).
-
----
-
-<br/>
-
-## 💬 Gemeinschaft
-
-Wir 💛 Beiträge! Egal, ob du Fehler behebst, die Dokumentation verbesserst oder Demos erstellst – deine Beiträge machen Bindu besser.
-
-- 💬 [Join Discord](https://discord.gg/3w5zuYUuwt) für Diskussionen und Unterstützung
-- ⭐ [Star the repository](https://github.com/getbindu/Bindu), wenn du es nützlich findest!
-
----
-
-<br/>
-
-## 👥 Aktive Moderatoren
-
-Unsere engagierten Moderatoren helfen, eine einladende und produktive Gemeinschaft aufrechtzuerhalten:
+## Maintainer
 
 <table>
   <tr>
-    <td align="center">
-      <a href="https://github.com/raahulrahl">
-        <img src="https://avatars.githubusercontent.com/u/157174139?v=4" width="100px;" alt="Raahul Dutta"/>
-        <br />
-        <sub><b>Raahul Dutta</b></sub>
-      </a>
-      <br />
-    </td>
-    <td align="center">
-      <a href="https://github.com/Paraschamoli">
-        <img src="https://avatars.githubusercontent.com/u/157124537?v=4" width="100px;" alt="Paras Chamoli"/>
-        <br />
-        <sub><b>Paras Chamoli</b></sub>
-      </a>
-      <br />
-    </td>
-    <td align="center">
-      <a href="https://github.com/chandan-1427">
-        <img src="https://avatars.githubusercontent.com/u/202320492?v=4" width="100px;" alt="Chandan"/>
-        <br />
-        <sub><b>Chandan</b></sub>
-      </a>
-      <br />
-    </td>
-    </tr>
+    <td align="center"><a href="https://github.com/raahulrahl"><img src="https://avatars.githubusercontent.com/u/157174139?v=4" width="80" alt="Raahul Dutta"/><br /><sub><b>Raahul Dutta</b></sub></a></td>
+    <td align="center"><a href="https://github.com/Paraschamoli"><img src="https://avatars.githubusercontent.com/u/157124537?v=4" width="80" alt="Paras Chamoli"/><br /><sub><b>Paras Chamoli</b></sub></a></td>
+    <td align="center"><a href="https://github.com/chandan-1427"><img src="https://avatars.githubusercontent.com/u/202320492?v=4" width="80" alt="Chandan"/><br /><sub><b>Chandan</b></sub></a></td>
+  </tr>
 </table>
 
-> Möchtest du Moderator werden? Kontaktiere uns auf [Discord](https://discord.gg/3w5zuYUuwt)!
+---
+
+## Danksagungen
+
+Bindu steht auf den Schultern von:
+
+[FastA2A](https://github.com/pydantic/fasta2a) · [A2A](https://github.com/a2aproject/A2A) · [x402](https://github.com/coinbase/x402) · [Hugging Face chat-ui](https://github.com/huggingface/chat-ui) · [12 Factor Agents](https://github.com/humanlayer/12-factor-agents/blob/main/content/factor-11-trigger-from-anywhere.md) · [OpenCode](https://github.com/anomalyco/opencode) · [OpenMoji](https://openmoji.org/library/emoji-1F33B/) · [ASCII Space Art](https://www.asciiart.eu/space/other)
 
 ---
 
-<br/>
+## Lizenz
 
-## 🙏 Danksagungen
-
-Dankbar für diese Projekte:
-
-- [FastA2A](https://github.com/pydantic/fasta2a)
-- [12 Factor Agents](https://github.com/humanlayer/12-factor-agents/blob/main/content/factor-11-trigger-from-anywhere.md)
-- [A2A](https://github.com/a2aproject/A2A)
-- [AP2](https://github.com/google-agentic-commerce/AP2)
-- [Huggingface chatui](https://github.com/huggingface/chat-ui)
-- [X402](https://github.com/coinbase/x402)
-- [Bindu Logo](https://openmoji.org/library/emoji-1F33B/)
-- [ASCII Space Art](https://www.asciiart.eu/space/other)
-
----
-
-<br/>
-
-## 🗺️ Fahrplan
-
-- [ ] Unterstützung für GRPC-Transport- [ ] Testabdeckung auf 80% erhöhen (in Bearbeitung)
-- [ ] AP2 End-to-End-Unterstützung
-- [ ] DSPy-Integration (in Bearbeitung)
-- [ ] MLTS-Unterstützung
-- [ ] X402-Unterstützung mit anderen Facilitators
-
-> 💡 [Suggest features on Discord](https://discord.gg/3w5zuYUuwt)!
-
----
-
-<br/>
-
-## [We will make this agents bidufied and we do need your help.](https://www.notion.so/getbindu/305d3bb65095808eac2bf720368e9804?v=305d3bb6509580189941000cfad83ae7&source=copy_link)
-
----
-
-<br/>
-
-## 🎓 Workshops
-
-- [AI Native in Action: Agent Symphony](https://www.meetup.com/ai-native-Amsterdam && India/events/311066899/) - [Slides](https://docs.google.com/presentation/d/1SqGXI0Gv_KCWZ1Mw2SOx_kI0u-LLxwZq7lMSONdl8oQ/edit)
-
----
-
-<br/>
-
-## ⭐ Sternengeschichte
-
-[![Star History Chart](https://api.star-history.com/svg?repos=getbindu/Bindu&type=Date)](https://www.star-history.com/#getbindu/Bindu&Date)
-
----
+Apache 2.0. Siehe [LICENSE.md](LICENSE.md)。
 
 <p align="center">
-  <strong>Hergestellt mit 💛 vom Team aus Amsterdam && Indien </strong><br/>
-  <em>Frohes Bindu! 🌻🚀✨</em>
-</p>
-
-<p align="center">
-  <strong>Von der Idee zum Internet der Agenten in 2 Minuten.</strong><br/>
-  <em>Ihr Agent. Ihr Framework. Universelle Protokolle.</em>
-</p>
-
-<p align="center">
-  <a href="https://github.com/getbindu/Bindu">⭐ Sternen Sie uns auf GitHub</a> •
-  <a href="https://discord.gg/3w5zuYUuwt">💬 Treten Sie Discord bei</a> •
-  <a href="https://docs.getbindu.com">🌻 Lesen Sie die Dokumentation</a>
+  <a href="https://api.star-history.com/svg?repos=getbindu/Bindu&type=Date">
+    <img src="https://api.star-history.com/svg?repos=getbindu/Bindu&type=Date" alt="Star history">
+  </a>
 </p>
 
 <br/>
+<br/>
 
 <p align="center">
-  <img src="../assets/sunflower-footer.jpeg" alt="Bindu" width="720" />
+  <img src="../assets/sunflower-mountains.jpeg" alt="Bindu" width="720" />
 </p>
 
 <p align="center">
-  <em>"Wir glauben an die Sonnenblumentheorie - zusammen aufrecht stehen, Hoffnung und Licht ins Internet der Agenten bringen."</em>
+  <em>"Wir glauben an die Sonnenblumen-Theorie - gemeinsam aufrecht stehen, Hoffnung und Licht in das Agenten-Internet bringen."</em>
+</p>
+
+<p align="center">
+  <em>Von Idee zum Agenten-Internet in 2 Minuten.</em>
+  <em>Ihr Agent. Ihr Framework. Universelles Protokoll.</em>
+</p>
+
+<p align="center">
+  <a href="https://github.com/getbindu/Bindu">Geben Sie uns auf GitHub einen Stern</a> •
+  <a href="https://discord.gg/3w5zuYUuwt">Treten Sie Discord bei</a> •
+  <a href="https://docs.getbindu.com">Dokumentation lesen</a>
+</p>
+
+<p align="center">
+  <sub>
+    Hergestellt zwischen Amsterdam und Indien · Open Source unter Apache 2.0 ·
+    <a href="https://getbindu.com">getbindu.com</a>
+  </sub>
 </p>
