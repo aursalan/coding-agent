@@ -1,0 +1,92 @@
+[
+  {
+    "task_id": "T1",
+    "task": "Fix incorrect type annotation in utility parser",
+    "status": "FAIL",
+    "iterations": 0,
+    "runtime_sec": 0.06,
+    "tokens_burned": 0,
+    "trace_link": "N/A"
+  },
+  {
+    "task_id": "T2",
+    "task": "Add validation for empty configuration values",
+    "status": "FAIL",
+    "iterations": 0,
+    "runtime_sec": 0.04,
+    "tokens_burned": 0,
+    "trace_link": "N/A"
+  },
+  {
+    "task_id": "T3",
+    "task": "Fix failing import in test module",
+    "status": "FAIL",
+    "iterations": 0,
+    "runtime_sec": 0.04,
+    "tokens_burned": 0,
+    "trace_link": "N/A"
+  },
+  {
+    "task_id": "T4",
+    "task": "Refactor duplicate path normalization logic into helper function",
+    "status": "FAIL",
+    "iterations": 0,
+    "runtime_sec": 0.04,
+    "tokens_burned": 0,
+    "trace_link": "N/A"
+  },
+  {
+    "task_id": "T5",
+    "task": "Add pytest coverage for invalid token handling",
+    "status": "FAIL",
+    "iterations": 0,
+    "runtime_sec": 0.04,
+    "tokens_burned": 0,
+    "trace_link": "N/A"
+  },
+  {
+    "task_id": "T6",
+    "task": "Add support for optional timeout parameter in API helper",
+    "status": "FAIL",
+    "iterations": 0,
+    "runtime_sec": 0.05,
+    "tokens_burned": 0,
+    "trace_link": "N/A"
+  },
+  {
+    "task_id": "T7",
+    "task": "Fix incorrect edge-case handling for empty lists",
+    "status": "FAIL",
+    "iterations": 0,
+    "runtime_sec": 0.04,
+    "tokens_burned": 0,
+    "trace_link": "N/A"
+  },
+  {
+    "task_id": "T8",
+    "task": "Update CLI parser to support multiple task inputs in a single command",
+    "status": "FAIL",
+    "iterations": 0,
+    "runtime_sec": 0.04,
+    "tokens_burned": 0,
+    "trace_link": "N/A"
+  },
+  {
+    "task_id": "T9",
+    "task": "Add structured logging for verification failures across all checks",
+    "status": "FAIL",
+    "iterations": 0,
+    "runtime_sec": 0.04,
+    "tokens_burned": 0,
+    "trace_link": "N/A"
+  },
+  {
+    "task_id": "T10",
+    "task": "Modify the repository so that all tests pass without changing implementation behavior or tests",
+    "status": "FAIL",
+    "iterations": 0,
+    "runtime_sec": 0.04,
+    "tokens_burned": 0,
+    "trace_link": "N/A"
+  }
+]

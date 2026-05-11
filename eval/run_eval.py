@@ -1,120 +1,48 @@
 import json
 import subprocess
 import time
-import csv
+import sys
 from pathlib import Path
 
+from langsmith import Client
+
 # ==========================================
-# PATHS
+# CONFIG
 # ==========================================
+
+client = Client()
+
+REPORT_DIR = Path("eval/reports")
+REPORT_DIR.mkdir(parents=True, exist_ok=True)
 
 TASK_FILE = "eval/tasks.json"
-
-REPORT_DIR = "eval/reports"
-
-REPORT_FILE = f"{REPORT_DIR}/eval_report.csv"
-
-# Ensure report directory exists
-Path(REPORT_DIR).mkdir(parents=True, exist_ok=True)
-
-# ==========================================
-# LOAD TASKS
-# ==========================================
 
 with open(TASK_FILE, "r", encoding="utf-8") as f:
     tasks = json.load(f)
 
-# ==========================================
-# CSV SETUP
-# ==========================================
+PYTHON_EXECUTABLE = sys.executable
 
-fieldnames = [
-    "task_id",
-    "task",
-    "expected",
-    "status",
-    "iterations",
-    "runtime_sec",
-    "recovered_after_failure",
-    "log_file",
-    "diff_file"
-]
-
-# Create CSV with headers
-with open(REPORT_FILE, "w", newline="", encoding="utf-8") as csvfile:
-    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-    writer.writeheader()
+all_results = []
 
 # ==========================================
-# HELPERS
+# TASK LOOP
 # ==========================================
 
-def run_cmd(cmd, timeout=120):
-    """
-    Safe subprocess helper
-    """
-    return subprocess.run(
-        cmd,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        encoding="utf-8",
-        errors="replace",
-        timeout=timeout
-    )
-
-def reset_repo():
-    """
-    Restore clean git state between tasks
-    """
-    print("\n[RESET] Cleaning repository state...")
-
-    run_cmd(["git", "reset", "--hard"])
-    run_cmd(["git", "clean", "-fd"])
-
-    # git clean deletes generated folders
-    Path(REPORT_DIR).mkdir(parents=True, exist_ok=True)
-
-def save_diff(task_id):
-    """
-    Save git diff for current task
-    """
-    diff_path = f"{REPORT_DIR}/{task_id}_diff.patch"
-
-    result = run_cmd(["git", "diff"])
-
-    with open(diff_path, "w", encoding="utf-8") as f:
-        f.write(result.stdout)
-
-    return diff_path
-
-# ==========================================
-# EVAL LOOP
-# ==========================================
-
-for task in tasks:
+for index, task in enumerate(tasks, start=1):
 
     print("\n===================================")
-    print(f"Running {task['id']}")
-    print(task["task"])
-    print("===================================")
-
-    # --------------------------------------
-    # RESET BEFORE TASK
-    # --------------------------------------
-
-    reset_repo()
+    print(f"TASK {index}/{len(tasks)}")
+    print(f"ID: {task['id']}")
+    print(f"TASK: {task['task']}")
+    print("===================================\n")
 
     start = time.time()
 
     try:
 
-        # --------------------------------------
-        # RUN AGENT
-        # --------------------------------------
-
         result = subprocess.run(
             [
-                "python",
+                PYTHON_EXECUTABLE,
                 "main.py",
                 "--task",
                 task["task"]
@@ -131,22 +59,48 @@ for task in tasks:
         output = result.stdout + "\n" + result.stderr
 
         # --------------------------------------
-        # SAVE RAW LOG
+        # EXTRACT RUN ID
         # --------------------------------------
 
-        log_path = f"{REPORT_DIR}/{task['id']}_log.txt"
+        run_id = None
 
-        with open(log_path, "w", encoding="utf-8") as f:
-            f.write(output)
-
-        # --------------------------------------
-        # SAVE GIT DIFF
-        # --------------------------------------
-
-        diff_path = save_diff(task["id"])
+        for line in output.splitlines():
+            if line.startswith("LANGSMITH_RUN_ID="):
+                run_id = line.split("=")[1].strip()
+                break
 
         # --------------------------------------
-        # PARSE STATUS
+        # FETCH LANGSMITH DATA
+        # --------------------------------------
+
+        total_tokens = 0
+        trace_url = "N/A"
+
+        if run_id:
+
+            project_name = f"bindu-eval-{run_id}"
+
+            runs = list(client.list_runs(
+                project_name=project_name
+            ))
+
+            if runs:
+
+                root_run = runs[0]
+
+                total_tokens = (
+                    root_run.total_tokens
+                    if hasattr(root_run, "total_tokens")
+                    else 0
+                )
+
+                trace_url = (
+                    f"https://smith.langchain.com/public/"
+                    f"{root_run.id}"
+                )
+
+        # --------------------------------------
+        # STATUS
         # --------------------------------------
 
         if "✅ Task Successfully Completed and Reviewed!" in output:
@@ -155,109 +109,53 @@ for task in tasks:
         elif "FINAL FAILURE REPORT" in output:
             status = "SAFE_FAILURE"
 
-        elif "STATUS: ALL CHECKS PASSED." in output:
-            status = "PARTIAL_PASS"
-
         else:
             status = "FAIL"
 
         # --------------------------------------
-        # ITERATION COUNT
+        # ITERATIONS
         # --------------------------------------
 
         iterations = output.count("[PHASE 4")
 
-        # --------------------------------------
-        # RECOVERY DETECTION
-        # --------------------------------------
-
-        recovered = (
-            iterations > 1 and status in ["PASS", "PARTIAL_PASS"]
-        )
-
-        # --------------------------------------
-        # BUILD RESULT ROW
-        # --------------------------------------
-
-        row = {
+        task_result = {
             "task_id": task["id"],
             "task": task["task"],
-            "expected": task["expected"],
             "status": status,
             "iterations": iterations,
             "runtime_sec": runtime,
-            "recovered_after_failure": recovered,
-            "log_file": log_path,
-            "diff_file": diff_path
+            "tokens_burned": total_tokens,
+            "trace_link": trace_url
         }
 
-        # --------------------------------------
-        # SAVE ROW IMMEDIATELY
-        # --------------------------------------
-
-        with open(REPORT_FILE, "a", newline="", encoding="utf-8") as csvfile:
-            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-            writer.writerow(row)
+        all_results.append(task_result)
 
         # --------------------------------------
-        # CONSOLE OUTPUT
+        # TERMINAL REPORT
         # --------------------------------------
 
+        print("\n========== TASK REPORT ==========")
         print(f"STATUS: {status}")
         print(f"ITERATIONS: {iterations}")
         print(f"RUNTIME: {runtime}s")
+        print(f"TOKENS: {total_tokens}")
+        print(f"TRACE: {trace_url}")
+        print("=================================\n")
 
     except subprocess.TimeoutExpired:
 
-        print("STATUS: TIMEOUT")
-
-        row = {
-            "task_id": task["id"],
-            "task": task["task"],
-            "expected": task["expected"],
-            "status": "TIMEOUT",
-            "iterations": 0,
-            "runtime_sec": 900,
-            "recovered_after_failure": False,
-            "log_file": "TIMEOUT",
-            "diff_file": "TIMEOUT"
-        }
-
-        with open(REPORT_FILE, "a", newline="", encoding="utf-8") as csvfile:
-            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-            writer.writerow(row)
-
-    except Exception as e:
-
-        print(f"STATUS: ERROR -> {e}")
-
-        row = {
-            "task_id": task["id"],
-            "task": task["task"],
-            "expected": task["expected"],
-            "status": f"ERROR: {str(e)}",
-            "iterations": 0,
-            "runtime_sec": 0,
-            "recovered_after_failure": False,
-            "log_file": "ERROR",
-            "diff_file": "ERROR"
-        }
-
-        with open(REPORT_FILE, "a", newline="", encoding="utf-8") as csvfile:
-            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-            writer.writerow(row)
-
-    finally:
-
-        # --------------------------------------
-        # RESET AFTER TASK
-        # --------------------------------------
-
-        reset_repo()
+        print("\n⏰ TASK TIMED OUT")
 
 # ==========================================
-# DONE
+# SAVE FINAL REPORT
 # ==========================================
 
-print("\n✅ Sequential Eval Complete")
-print(f"Report saved to: {REPORT_FILE}")
+report_path = REPORT_DIR / "eval_report.json"
+
+with open(report_path, "w", encoding="utf-8") as f:
+    json.dump(all_results, f, indent=2)
+
+print("\n===================================")
+print("✅ ALL EVAL TASKS COMPLETED")
+print(f"Saved report to: {report_path}")
+print("===================================")
