@@ -230,9 +230,39 @@ coder_tool_node = ToolNode(coder_tools)
 
 def route_analyzer(state: AgentState) -> str:
     last_msg = state['messages'][-1]
+
+    # Tool calls exist → continue
     if hasattr(last_msg, 'tool_calls') and last_msg.tool_calls:
         return "analyzer_tools"
-    return "end" # Should not happen if prompted correctly
+
+    content = getattr(last_msg, "content", "")
+
+    # Empty response → retry a few times only
+    if not content or not str(content).strip():
+        retries = state.get("analyzer_retry_count", 0)
+
+        if retries >= 3:
+            print("❌ Analyzer failed repeatedly.")
+            return "failure_reporter"
+
+        print(f"⚠ Empty analyzer response detected. Retry {retries+1}/3")
+
+        state["analyzer_retry_count"] = retries + 1
+        return "analyzer"
+
+    # Model answered but forgot tools
+    if "delegate" not in content.lower():
+        retries = state.get("analyzer_retry_count", 0)
+
+        if retries >= 3:
+            return "failure_reporter"
+
+        print(f"⚠ Analyzer produced no tool calls. Retry {retries+1}/3")
+
+        state["analyzer_retry_count"] = retries + 1
+        return "analyzer"
+
+    return "failure_reporter"
 
 def route_after_analyzer_tools(state: AgentState) -> str:
     # If the Analyzer just called delegate, force the graph to move to Phase 3 (Coder)
@@ -312,7 +342,11 @@ workflow.add_node("failure_reporter", failure_reporter_node)
 workflow.set_entry_point("analyzer")
 
 # Enforce the strict workflow paths
-workflow.add_conditional_edges("analyzer", route_analyzer, {"analyzer_tools": "analyzer_tools", "end": END})
+workflow.add_conditional_edges("analyzer", route_analyzer, {
+    "analyzer_tools": "analyzer_tools",
+    "analyzer": "analyzer",
+    "end": END
+})
 workflow.add_conditional_edges("analyzer_tools", route_after_analyzer_tools, {"coder": "coder", "analyzer": "analyzer"})
 
 workflow.add_conditional_edges("coder", route_coder, {"coder_tools": "coder_tools", "coder": "coder"})

@@ -222,3 +222,7 @@ sdks/kotlin/bin/
 examples/gateway_test_fleet/pids/
 examples/gateway_test_fleet/logs/
 examples/gateway_test_fleet/.fleet.env
+
+# Databases
+bindu_bm25_index.pkl
+bindu_vector_store/*
