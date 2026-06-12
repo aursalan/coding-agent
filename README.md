@@ -1,6 +1,5 @@
 # Bindu — Retrieval-Augmented Coding Agent
 
-> GrabOn AI Labs — Assignment 05: The Coder  
 > Deterministic Retrieval-Augmented Repository Repair Agent
 
 ---
